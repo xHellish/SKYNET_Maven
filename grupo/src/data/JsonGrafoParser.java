@@ -37,6 +37,6 @@ public class JsonGrafoParser {
     }
 
     public void setPath(String newPath) {
-        this.path = newPath;
+        path = newPath;
     }
 }

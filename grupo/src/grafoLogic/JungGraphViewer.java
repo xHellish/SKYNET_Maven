@@ -1,6 +1,7 @@
 package grafoLogic;
 
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+import modulo.Arista;
 import modulo.Nodo;
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.graph.Graph;
@@ -12,56 +13,56 @@ import javax.swing.*;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.awt.*;
+import java.util.Random;
 import java.util.Vector;
 
 public class JungGraphViewer {
-	
-	JsonNode grafoNodo;
+    
+	//GrafoActual tipo JsonObject
+	JsonNode grafoNodoActual;
 	
     public JungGraphViewer() {
     	
     }
     
     public void setGrafoNodo(JsonNode grafoNodo) {
-    	this.grafoNodo = grafoNodo;
+    	grafoNodoActual = grafoNodo;
     	
     }
     
     private Graph<String, String> convertirJsonAGrafo(JsonNode grafoNodo) {
-    	
-    	UndirectedSparseGraph<String, String> grafoJung = new UndirectedSparseGraph<>();
-    	
-        // Agregar vértices al grafo
-        for (JsonNode ciudad : grafoNodo.get("ciudades")) {
-            String nombreCiudad = ciudad.get("nombre").asText();
-            grafoJung.addVertex(nombreCiudad);
-        }
-
-        // Agregar aristas al grafo
-        for (JsonNode conexion : grafoNodo.get("conexiones")) {
-            String ciudadOrigen = conexion.get("ciudadOrigen").asText();
-            String ciudadDestino = conexion.get("ciudadDestino").asText();
-            String camino = conexion.get("camino").asText();
-
-            // Utiliza una combinación de ciudades y camino como nombre único para la arista
-            String idArista = ciudadOrigen + "_" + ciudadDestino + "_" + camino;
-
-            grafoJung.addEdge(idArista, ciudadOrigen, ciudadDestino);
-        }
+        UndirectedSparseGraph<String, String> grafoJung = new UndirectedSparseGraph<>();
         
+        int numeroID = 0;
+        
+        // Agregar vértices y aristas al grafo
+        for (JsonNode ciudad : grafoNodo.get("Ciudades")) {
+            String nombreCiudad = ciudad.get("Vertex").asText();
+            grafoJung.addVertex(nombreCiudad);
+
+            for (JsonNode conexion : ciudad.get("Edges")) {
+                String ciudadDestino = conexion.get("ToVertex").asText();
+                //String idArista = nombreCiudad + "_&_" + ciudadDestino;
+                
+                
+                grafoJung.addEdge(String.valueOf(numeroID++), nombreCiudad, ciudadDestino);
+            }
+        }
+
         return grafoJung;
     }
 
-    public void showGraph(Graph<String, String> graph) {
+
+    public void showGraph(Graph<String, String> graph, String nombreVentana) {
         
         VisualizationViewer<String, String> vv = new VisualizationViewer<>(new CircleLayout<>(graph));
-		vv.setPreferredSize(new Dimension(1024, 720));
+		vv.setPreferredSize(new Dimension(690, 630));
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-		vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+		//vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
 		vv.setGraphMouse(new DefaultModalGraphMouse<>());
 
         // Crear la ventana
-        JFrame frame = new JFrame("JUNG Graph Viewer");
+        JFrame frame = new JFrame(nombreVentana);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().add(vv);
         frame.pack();
@@ -70,11 +71,23 @@ public class JungGraphViewer {
     }
 
 	public void showGrafoJson() {
-		showGraph(convertirJsonAGrafo(grafoNodo));
+		showGraph(convertirJsonAGrafo(grafoNodoActual), "GRAFO ORIGINAL");
 	}
 	
 	public void showGrafoVector(Vector<Nodo> grafoCitys) {
 		
+		int numeroID = 0;
+		UndirectedSparseGraph<String, String> grafoJung = new UndirectedSparseGraph<>();
+		
+		for (Nodo ciudad : grafoCitys) {
+			grafoJung.addVertex(ciudad.getNombre());
+			
+			for (Arista arista : ciudad.getAristas()) {
+				grafoJung.addEdge(String.valueOf(numeroID++), ciudad.getNombre(), arista.getNombreInicio());
+			}
+		}
+		
+		showGraph(grafoJung, "GRAFO MODIFICADO SKYNET");
 	}
 }
 

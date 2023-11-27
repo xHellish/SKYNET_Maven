@@ -1,0 +1,1348 @@
+{
+    "Ciudades": [
+        {
+            "Vertex": "Madrid",
+            "Soldiers": 6266,
+            "Missiles": 4418,
+            "TechLevel": 1,
+            "Edges": [
+                {
+                    "ToVertex": "Skopje",
+                    "Military": 89,
+                    "Goods": 44,
+                    "Distance": 1359
+                },
+                {
+                    "ToVertex": "Copenhague",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 242
+                },
+                {
+                    "ToVertex": "Budapest",
+                    "Military": 27,
+                    "Goods": 67,
+                    "Distance": 1928
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 1701
+                }
+            ]
+        },
+        {
+            "Vertex": "Lisboa",
+            "Soldiers": 6471,
+            "Missiles": 1669,
+            "TechLevel": 8,
+            "Edges": [
+                {
+                    "ToVertex": "Atenas",
+                    "Military": 77,
+                    "Goods": 23,
+                    "Distance": 1960
+                },
+                {
+                    "ToVertex": "Skopje",
+                    "Military": 89,
+                    "Goods": 44,
+                    "Distance": 1156
+                },
+                {
+                    "ToVertex": "Amsterdam",
+                    "Military": 43,
+                    "Goods": 70,
+                    "Distance": 1510
+                },
+                {
+                    "ToVertex": "Kiev",
+                    "Military": 59,
+                    "Goods": 22,
+                    "Distance": 403
+                },
+                {
+                    "ToVertex": "Budapest",
+                    "Military": 27,
+                    "Goods": 67,
+                    "Distance": 450
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 138
+                }
+            ]
+        },
+        {
+            "Vertex": "Paris",
+            "Soldiers": 6154,
+            "Missiles": 3566,
+            "TechLevel": 3,
+            "Edges": [
+                {
+                    "ToVertex": "Estambul",
+                    "Military": 74,
+                    "Goods": 75,
+                    "Distance": 481
+                },
+                {
+                    "ToVertex": "Bruselas",
+                    "Military": 46,
+                    "Goods": 79,
+                    "Distance": 445
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 598
+                }
+            ]
+        },
+        {
+            "Vertex": "Londres",
+            "Soldiers": 6665,
+            "Missiles": 4436,
+            "TechLevel": 4,
+            "Edges": [
+                {
+                    "ToVertex": "Dublin",
+                    "Military": 71,
+                    "Goods": 59,
+                    "Distance": 1872
+                },
+                {
+                    "ToVertex": "Berlin",
+                    "Military": 46,
+                    "Goods": 67,
+                    "Distance": 1266
+                },
+                {
+                    "ToVertex": "Estambul",
+                    "Military": 74,
+                    "Goods": 75,
+                    "Distance": 1455
+                },
+                {
+                    "ToVertex": "Varsovia",
+                    "Military": 70,
+                    "Goods": 37,
+                    "Distance": 854
+                },
+                {
+                    "ToVertex": "Milan",
+                    "Military": 29,
+                    "Goods": 67,
+                    "Distance": 1628
+                },
+                {
+                    "ToVertex": "Bruselas",
+                    "Military": 46,
+                    "Goods": 79,
+                    "Distance": 1568
+                }
+            ]
+        },
+        {
+            "Vertex": "Berlin",
+            "Soldiers": 6183,
+            "Missiles": 4157,
+            "TechLevel": 6,
+            "Edges": [
+                {
+                    "ToVertex": "Londres",
+                    "Military": 89,
+                    "Goods": 64,
+                    "Distance": 1266
+                },
+                {
+                    "ToVertex": "Tirana",
+                    "Military": 44,
+                    "Goods": 27,
+                    "Distance": 202
+                },
+                {
+                    "ToVertex": "Sofia",
+                    "Military": 23,
+                    "Goods": 46,
+                    "Distance": 1051
+                },
+                {
+                    "ToVertex": "Dublin",
+                    "Military": 71,
+                    "Goods": 59,
+                    "Distance": 882
+                },
+                {
+                    "ToVertex": "Roma",
+                    "Military": 82,
+                    "Goods": 77,
+                    "Distance": 852
+                },
+                {
+                    "ToVertex": "Belgrado",
+                    "Military": 51,
+                    "Goods": 76,
+                    "Distance": 286
+                }
+            ]
+        },
+        {
+            "Vertex": "Amsterdam",
+            "Soldiers": 3384,
+            "Missiles": 1375,
+            "TechLevel": 8,
+            "Edges": [
+                {
+                    "ToVertex": "Oslo",
+                    "Military": 12,
+                    "Goods": 76,
+                    "Distance": 1177
+                },
+                {
+                    "ToVertex": "Roma",
+                    "Military": 82,
+                    "Goods": 77,
+                    "Distance": 1357
+                },
+                {
+                    "ToVertex": "Sarajevo",
+                    "Military": 78,
+                    "Goods": 53,
+                    "Distance": 1378
+                },
+                {
+                    "ToVertex": "Lisboa",
+                    "Military": 43,
+                    "Goods": 70,
+                    "Distance": 1510
+                },
+                {
+                    "ToVertex": "Kiev",
+                    "Military": 59,
+                    "Goods": 22,
+                    "Distance": 1332
+                },
+                {
+                    "ToVertex": "Bruselas",
+                    "Military": 46,
+                    "Goods": 79,
+                    "Distance": 231
+                },
+                {
+                    "ToVertex": "Zurich",
+                    "Military": 8,
+                    "Goods": 67,
+                    "Distance": 936
+                }
+            ]
+        },
+        {
+            "Vertex": "Varsovia",
+            "Soldiers": 5664,
+            "Missiles": 1566,
+            "TechLevel": 5,
+            "Edges": [
+                {
+                    "ToVertex": "Londres",
+                    "Military": 89,
+                    "Goods": 64,
+                    "Distance": 854
+                },
+                {
+                    "ToVertex": "Dublin",
+                    "Military": 71,
+                    "Goods": 59,
+                    "Distance": 1800
+                },
+                {
+                    "ToVertex": "Copenhague",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 122
+                },
+                {
+                    "ToVertex": "Tirana",
+                    "Military": 44,
+                    "Goods": 27,
+                    "Distance": 743
+                },
+                {
+                    "ToVertex": "Moscu",
+                    "Military": 75,
+                    "Goods": 65,
+                    "Distance": 1140
+                },
+                {
+                    "ToVertex": "Oslo",
+                    "Military": 12,
+                    "Goods": 76,
+                    "Distance": 949
+                },
+                {
+                    "ToVertex": "Praga",
+                    "Military": 10,
+                    "Goods": 72,
+                    "Distance": 1327
+                },
+                {
+                    "ToVertex": "Skopje",
+                    "Military": 89,
+                    "Goods": 44,
+                    "Distance": 622
+                }
+            ]
+        },
+        {
+            "Vertex": "Copenhague",
+            "Soldiers": 3311,
+            "Missiles": 4157,
+            "TechLevel": 9,
+            "Edges": [
+                {
+                    "ToVertex": "Varsovia",
+                    "Military": 70,
+                    "Goods": 37,
+                    "Distance": 122
+                },
+                {
+                    "ToVertex": "Dublin",
+                    "Military": 71,
+                    "Goods": 59,
+                    "Distance": 1847
+                },
+                {
+                    "ToVertex": "Praga",
+                    "Military": 10,
+                    "Goods": 72,
+                    "Distance": 1726
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 360
+                },
+                {
+                    "ToVertex": "Madrid",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 242
+                },
+                {
+                    "ToVertex": "Estocolmo",
+                    "Military": 85,
+                    "Goods": 65,
+                    "Distance": 271
+                },
+                {
+                    "ToVertex": "Zurich",
+                    "Military": 8,
+                    "Goods": 67,
+                    "Distance": 264
+                },
+                {
+                    "ToVertex": "Estambul",
+                    "Military": 74,
+                    "Goods": 75,
+                    "Distance": 1056
+                }
+            ]
+        },
+        {
+            "Vertex": "Kiev",
+            "Soldiers": 3077,
+            "Missiles": 6092,
+            "TechLevel": 5,
+            "Edges": [
+                {
+                    "ToVertex": "Milan",
+                    "Military": 29,
+                    "Goods": 67,
+                    "Distance": 1407
+                },
+                {
+                    "ToVertex": "Bucarest",
+                    "Military": 85,
+                    "Goods": 42,
+                    "Distance": 441
+                },
+                {
+                    "ToVertex": "Lisboa",
+                    "Military": 59,
+                    "Goods": 22,
+                    "Distance": 403
+                },
+                {
+                    "ToVertex": "Amsterdam",
+                    "Military": 43,
+                    "Goods": 70,
+                    "Distance": 1332
+                },
+                {
+                    "ToVertex": "Budapest",
+                    "Military": 27,
+                    "Goods": 67,
+                    "Distance": 922
+                },
+                {
+                    "ToVertex": "Dublin",
+                    "Military": 71,
+                    "Goods": 59,
+                    "Distance": 1464
+                }
+            ]
+        },
+        {
+            "Vertex": "Estocolmo",
+            "Soldiers": 6399,
+            "Missiles": 6806,
+            "TechLevel": 9,
+            "Edges": [
+                {
+                    "ToVertex": "Bucarest",
+                    "Military": 69,
+                    "Goods": 34,
+                    "Distance": 544
+                },
+                {
+                    "ToVertex": "Copenhague",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 271
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 1933
+                },
+                {
+                    "ToVertex": "Sofia",
+                    "Military": 23,
+                    "Goods": 46,
+                    "Distance": 655
+                }
+            ]
+        },
+        {
+            "Vertex": "Moscu",
+            "Soldiers": 3358,
+            "Missiles": 6951,
+            "TechLevel": 10,
+            "Edges": [
+                {
+                    "ToVertex": "Atenas",
+                    "Military": 77,
+                    "Goods": 23,
+                    "Distance": 1589
+                },
+                {
+                    "ToVertex": "Varsovia",
+                    "Military": 70,
+                    "Goods": 37,
+                    "Distance": 1140
+                },
+                {
+                    "ToVertex": "Estambul",
+                    "Military": 74,
+                    "Goods": 75,
+                    "Distance": 1306
+                },
+                {
+                    "ToVertex": "Belgrado",
+                    "Military": 51,
+                    "Goods": 76,
+                    "Distance": 1895
+                },
+                {
+                    "ToVertex": "Sarajevo",
+                    "Military": 78,
+                    "Goods": 53,
+                    "Distance": 1071
+                }
+            ]
+        },
+        {
+            "Vertex": "Oslo",
+            "Soldiers": 6221,
+            "Missiles": 5365,
+            "TechLevel": 4,
+            "Edges": [
+                {
+                    "ToVertex": "Amsterdam",
+                    "Military": 43,
+                    "Goods": 70,
+                    "Distance": 1177
+                },
+                {
+                    "ToVertex": "Sarajevo",
+                    "Military": 78,
+                    "Goods": 53,
+                    "Distance": 1576
+                },
+                {
+                    "ToVertex": "Varsovia",
+                    "Military": 70,
+                    "Goods": 37,
+                    "Distance": 949
+                },
+                {
+                    "ToVertex": "Viena",
+                    "Military": 8,
+                    "Goods": 10,
+                    "Distance": 1184
+                },
+                {
+                    "ToVertex": "Atenas",
+                    "Military": 77,
+                    "Goods": 23,
+                    "Distance": 1218
+                },
+                {
+                    "ToVertex": "Belgrado",
+                    "Military": 51,
+                    "Goods": 76,
+                    "Distance": 1191
+                }
+            ]
+        },
+        {
+            "Vertex": "Roma",
+            "Soldiers": 1676,
+            "Missiles": 2993,
+            "TechLevel": 5,
+            "Edges": [
+                {
+                    "ToVertex": "Amsterdam",
+                    "Military": 43,
+                    "Goods": 70,
+                    "Distance": 1357
+                },
+                {
+                    "ToVertex": "Atenas",
+                    "Military": 77,
+                    "Goods": 23,
+                    "Distance": 394
+                },
+                {
+                    "ToVertex": "Berlin",
+                    "Military": 46,
+                    "Goods": 67,
+                    "Distance": 852
+                },
+                {
+                    "ToVertex": "Bruselas",
+                    "Military": 46,
+                    "Goods": 79,
+                    "Distance": 989
+                },
+                {
+                    "ToVertex": "Bucarest",
+                    "Military": 85,
+                    "Goods": 42,
+                    "Distance": 1439
+                },
+                {
+                    "ToVertex": "Belgrado",
+                    "Military": 51,
+                    "Goods": 76,
+                    "Distance": 800
+                },
+                {
+                    "ToVertex": "Zagreb",
+                    "Military": 48,
+                    "Goods": 56,
+                    "Distance": 1830
+                },
+                {
+                    "ToVertex": "Skopje",
+                    "Military": 89,
+                    "Goods": 44,
+                    "Distance": 516
+                },
+                {
+                    "ToVertex": "Tirana",
+                    "Military": 44,
+                    "Goods": 27,
+                    "Distance": 1453
+                }
+            ]
+        },
+        {
+            "Vertex": "Milan",
+            "Soldiers": 5921,
+            "Missiles": 1347,
+            "TechLevel": 8,
+            "Edges": [
+                {
+                    "ToVertex": "Kiev",
+                    "Military": 59,
+                    "Goods": 22,
+                    "Distance": 1407
+                },
+                {
+                    "ToVertex": "Zurich",
+                    "Military": 8,
+                    "Goods": 67,
+                    "Distance": 530
+                },
+                {
+                    "ToVertex": "Londres",
+                    "Military": 89,
+                    "Goods": 64,
+                    "Distance": 1628
+                },
+                {
+                    "ToVertex": "Belgrado",
+                    "Military": 51,
+                    "Goods": 76,
+                    "Distance": 1300
+                },
+                {
+                    "ToVertex": "Budapest",
+                    "Military": 27,
+                    "Goods": 67,
+                    "Distance": 914
+                }
+            ]
+        },
+        {
+            "Vertex": "Viena",
+            "Soldiers": 3581,
+            "Missiles": 1999,
+            "TechLevel": 7,
+            "Edges": [
+                {
+                    "ToVertex": "Sofia",
+                    "Military": 23,
+                    "Goods": 46,
+                    "Distance": 1743
+                },
+                {
+                    "ToVertex": "Oslo",
+                    "Military": 12,
+                    "Goods": 76,
+                    "Distance": 1184
+                }
+            ]
+        },
+        {
+            "Vertex": "Budapest",
+            "Soldiers": 1901,
+            "Missiles": 2100,
+            "TechLevel": 8,
+            "Edges": [
+                {
+                    "ToVertex": "Milan",
+                    "Military": 29,
+                    "Goods": 67,
+                    "Distance": 914
+                },
+                {
+                    "ToVertex": "Kiev",
+                    "Military": 59,
+                    "Goods": 22,
+                    "Distance": 922
+                },
+                {
+                    "ToVertex": "Tirana",
+                    "Military": 44,
+                    "Goods": 27,
+                    "Distance": 871
+                },
+                {
+                    "ToVertex": "Madrid",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 1928
+                },
+                {
+                    "ToVertex": "Lisboa",
+                    "Military": 60,
+                    "Goods": 35,
+                    "Distance": 450
+                },
+                {
+                    "ToVertex": "Zagreb",
+                    "Military": 48,
+                    "Goods": 56,
+                    "Distance": 857
+                }
+            ]
+        },
+        {
+            "Vertex": "Praga",
+            "Soldiers": 4415,
+            "Missiles": 2045,
+            "TechLevel": 3,
+            "Edges": [
+                {
+                    "ToVertex": "Copenhague",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 1726
+                },
+                {
+                    "ToVertex": "Atenas",
+                    "Military": 77,
+                    "Goods": 23,
+                    "Distance": 390
+                },
+                {
+                    "ToVertex": "Varsovia",
+                    "Military": 70,
+                    "Goods": 37,
+                    "Distance": 1327
+                },
+                {
+                    "ToVertex": "Dublin",
+                    "Military": 71,
+                    "Goods": 59,
+                    "Distance": 529
+                }
+            ]
+        },
+        {
+            "Vertex": "Bruselas",
+            "Soldiers": 4814,
+            "Missiles": 3245,
+            "TechLevel": 7,
+            "Edges": [
+                {
+                    "ToVertex": "Paris",
+                    "Military": 46,
+                    "Goods": 79,
+                    "Distance": 445
+                },
+                {
+                    "ToVertex": "Bucarest",
+                    "Military": 85,
+                    "Goods": 42,
+                    "Distance": 1973
+                },
+                {
+                    "ToVertex": "Belgrado",
+                    "Military": 51,
+                    "Goods": 76,
+                    "Distance": 1722
+                },
+                {
+                    "ToVertex": "Roma",
+                    "Military": 82,
+                    "Goods": 77,
+                    "Distance": 989
+                },
+                {
+                    "ToVertex": "Amsterdam",
+                    "Military": 43,
+                    "Goods": 70,
+                    "Distance": 231
+                },
+                {
+                    "ToVertex": "Londres",
+                    "Military": 89,
+                    "Goods": 64,
+                    "Distance": 1568
+                }
+            ]
+        },
+        {
+            "Vertex": "Dublin",
+            "Soldiers": 5320,
+            "Missiles": 4930,
+            "TechLevel": 2,
+            "Edges": [
+                {
+                    "ToVertex": "Londres",
+                    "Military": 89,
+                    "Goods": 64,
+                    "Distance": 1872
+                },
+                {
+                    "ToVertex": "Berlin",
+                    "Military": 46,
+                    "Goods": 67,
+                    "Distance": 882
+                },
+                {
+                    "ToVertex": "Varsovia",
+                    "Military": 70,
+                    "Goods": 37,
+                    "Distance": 1800
+                },
+                {
+                    "ToVertex": "Copenhague",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 1847
+                },
+                {
+                    "ToVertex": "Praga",
+                    "Military": 10,
+                    "Goods": 72,
+                    "Distance": 529
+                },
+                {
+                    "ToVertex": "Kiev",
+                    "Military": 59,
+                    "Goods": 22,
+                    "Distance": 1464
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 1761
+                },
+                {
+                    "ToVertex": "Bucarest",
+                    "Military": 85,
+                    "Goods": 42,
+                    "Distance": 1681
+                }
+            ]
+        },
+        {
+            "Vertex": "Zurich",
+            "Soldiers": 6144,
+            "Missiles": 5894,
+            "TechLevel": 4,
+            "Edges": [
+                {
+                    "ToVertex": "Milan",
+                    "Military": 29,
+                    "Goods": 67,
+                    "Distance": 530
+                },
+                {
+                    "ToVertex": "Copenhague",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 264
+                },
+                {
+                    "ToVertex": "Amsterdam",
+                    "Military": 43,
+                    "Goods": 70,
+                    "Distance": 936
+                },
+                {
+                    "ToVertex": "Sofia",
+                    "Military": 23,
+                    "Goods": 46,
+                    "Distance": 1913
+                },
+                {
+                    "ToVertex": "Sarajevo",
+                    "Military": 78,
+                    "Goods": 53,
+                    "Distance": 1576
+                }
+            ]
+        },
+        {
+            "Vertex": "Estambul",
+            "Soldiers": 4950,
+            "Missiles": 2959,
+            "TechLevel": 3,
+            "Edges": [
+                {
+                    "ToVertex": "Paris",
+                    "Military": 74,
+                    "Goods": 75,
+                    "Distance": 481
+                },
+                {
+                    "ToVertex": "Londres",
+                    "Military": 89,
+                    "Goods": 64,
+                    "Distance": 1455
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 219
+                },
+                {
+                    "ToVertex": "Copenhague",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 1056
+                },
+                {
+                    "ToVertex": "Moscu",
+                    "Military": 75,
+                    "Goods": 65,
+                    "Distance": 1306
+                },
+                {
+                    "ToVertex": "Belgrado",
+                    "Military": 51,
+                    "Goods": 76,
+                    "Distance": 1824
+                },
+                {
+                    "ToVertex": "Sarajevo",
+                    "Military": 78,
+                    "Goods": 53,
+                    "Distance": 387
+                }
+            ]
+        },
+        {
+            "Vertex": "Atenas",
+            "Soldiers": 6892,
+            "Missiles": 6249,
+            "TechLevel": 5,
+            "Edges": [
+                {
+                    "ToVertex": "Lisboa",
+                    "Military": 77,
+                    "Goods": 23,
+                    "Distance": 1960
+                },
+                {
+                    "ToVertex": "Moscu",
+                    "Military": 75,
+                    "Goods": 65,
+                    "Distance": 1589
+                },
+                {
+                    "ToVertex": "Roma",
+                    "Military": 82,
+                    "Goods": 77,
+                    "Distance": 394
+                },
+                {
+                    "ToVertex": "Praga",
+                    "Military": 10,
+                    "Goods": 72,
+                    "Distance": 390
+                },
+                {
+                    "ToVertex": "Oslo",
+                    "Military": 12,
+                    "Goods": 76,
+                    "Distance": 1218
+                },
+                {
+                    "ToVertex": "Skopje",
+                    "Military": 89,
+                    "Goods": 44,
+                    "Distance": 1629
+                },
+                {
+                    "ToVertex": "Sarajevo",
+                    "Military": 78,
+                    "Goods": 53,
+                    "Distance": 1008
+                },
+                {
+                    "ToVertex": "Tirana",
+                    "Military": 44,
+                    "Goods": 27,
+                    "Distance": 794
+                }
+            ]
+        },
+        {
+            "Vertex": "Bucarest",
+            "Soldiers": 6594,
+            "Missiles": 4210,
+            "TechLevel": 10,
+            "Edges": [
+                {
+                    "ToVertex": "Kiev",
+                    "Military": 59,
+                    "Goods": 22,
+                    "Distance": 441
+                },
+                {
+                    "ToVertex": "Estocolmo",
+                    "Military": 85,
+                    "Goods": 65,
+                    "Distance": 544
+                },
+                {
+                    "ToVertex": "Bruselas",
+                    "Military": 46,
+                    "Goods": 79,
+                    "Distance": 1973
+                },
+                {
+                    "ToVertex": "Sarajevo",
+                    "Military": 78,
+                    "Goods": 53,
+                    "Distance": 924
+                },
+                {
+                    "ToVertex": "Tirana",
+                    "Military": 44,
+                    "Goods": 27,
+                    "Distance": 1064
+                },
+                {
+                    "ToVertex": "Roma",
+                    "Military": 82,
+                    "Goods": 77,
+                    "Distance": 1439
+                },
+                {
+                    "ToVertex": "Dublin",
+                    "Military": 71,
+                    "Goods": 59,
+                    "Distance": 1681
+                }
+            ]
+        },
+        {
+            "Vertex": "Sofia",
+            "Soldiers": 2961,
+            "Missiles": 5118,
+            "TechLevel": 7,
+            "Edges": [
+                {
+                    "ToVertex": "Berlin",
+                    "Military": 46,
+                    "Goods": 67,
+                    "Distance": 1051
+                },
+                {
+                    "ToVertex": "Viena",
+                    "Military": 8,
+                    "Goods": 10,
+                    "Distance": 1743
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 1863
+                },
+                {
+                    "ToVertex": "Estocolmo",
+                    "Military": 85,
+                    "Goods": 65,
+                    "Distance": 655
+                },
+                {
+                    "ToVertex": "Zurich",
+                    "Military": 8,
+                    "Goods": 67,
+                    "Distance": 1913
+                }
+            ]
+        },
+        {
+            "Vertex": "Belgrado",
+            "Soldiers": 2044,
+            "Missiles": 4794,
+            "TechLevel": 1,
+            "Edges": [
+                {
+                    "ToVertex": "Milan",
+                    "Military": 29,
+                    "Goods": 67,
+                    "Distance": 1300
+                },
+                {
+                    "ToVertex": "Bruselas",
+                    "Military": 46,
+                    "Goods": 79,
+                    "Distance": 1722
+                },
+                {
+                    "ToVertex": "Estambul",
+                    "Military": 74,
+                    "Goods": 75,
+                    "Distance": 1824
+                },
+                {
+                    "ToVertex": "Moscu",
+                    "Military": 75,
+                    "Goods": 65,
+                    "Distance": 1895
+                },
+                {
+                    "ToVertex": "Oslo",
+                    "Military": 12,
+                    "Goods": 76,
+                    "Distance": 1191
+                },
+                {
+                    "ToVertex": "Berlin",
+                    "Military": 46,
+                    "Goods": 67,
+                    "Distance": 286
+                },
+                {
+                    "ToVertex": "Roma",
+                    "Military": 82,
+                    "Goods": 77,
+                    "Distance": 800
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 761
+                }
+            ]
+        },
+        {
+            "Vertex": "Zagreb",
+            "Soldiers": 3754,
+            "Missiles": 3885,
+            "TechLevel": 10,
+            "Edges": [
+                {
+                    "ToVertex": "Budapest",
+                    "Military": 27,
+                    "Goods": 67,
+                    "Distance": 857
+                },
+                {
+                    "ToVertex": "Sarajevo",
+                    "Military": 78,
+                    "Goods": 53,
+                    "Distance": 564
+                },
+                {
+                    "ToVertex": "Roma",
+                    "Military": 82,
+                    "Goods": 77,
+                    "Distance": 1830
+                },
+                {
+                    "ToVertex": "Skopje",
+                    "Military": 89,
+                    "Goods": 44,
+                    "Distance": 1092
+                }
+            ]
+        },
+        {
+            "Vertex": "Sarajevo",
+            "Soldiers": 1780,
+            "Missiles": 6522,
+            "TechLevel": 7,
+            "Edges": [
+                {
+                    "ToVertex": "Amsterdam",
+                    "Military": 43,
+                    "Goods": 70,
+                    "Distance": 1378
+                },
+                {
+                    "ToVertex": "Oslo",
+                    "Military": 12,
+                    "Goods": 76,
+                    "Distance": 1576
+                },
+                {
+                    "ToVertex": "Bucarest",
+                    "Military": 85,
+                    "Goods": 42,
+                    "Distance": 924
+                },
+                {
+                    "ToVertex": "Zagreb",
+                    "Military": 48,
+                    "Goods": 56,
+                    "Distance": 564
+                },
+                {
+                    "ToVertex": "Zurich",
+                    "Military": 8,
+                    "Goods": 67,
+                    "Distance": 1576
+                },
+                {
+                    "ToVertex": "Atenas",
+                    "Military": 77,
+                    "Goods": 23,
+                    "Distance": 1008
+                },
+                {
+                    "ToVertex": "Estambul",
+                    "Military": 74,
+                    "Goods": 75,
+                    "Distance": 387
+                },
+                {
+                    "ToVertex": "Moscu",
+                    "Military": 75,
+                    "Goods": 65,
+                    "Distance": 1071
+                }
+            ]
+        },
+        {
+            "Vertex": "Ljubljana",
+            "Soldiers": 1531,
+            "Missiles": 1111,
+            "TechLevel": 5,
+            "Edges": [
+                {
+                    "ToVertex": "Copenhague",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 360
+                },
+                {
+                    "ToVertex": "Estocolmo",
+                    "Military": 85,
+                    "Goods": 65,
+                    "Distance": 1933
+                },
+                {
+                    "ToVertex": "Dublin",
+                    "Military": 71,
+                    "Goods": 59,
+                    "Distance": 1761
+                },
+                {
+                    "ToVertex": "Estambul",
+                    "Military": 74,
+                    "Goods": 75,
+                    "Distance": 219
+                },
+                {
+                    "ToVertex": "Sofia",
+                    "Military": 23,
+                    "Goods": 46,
+                    "Distance": 1863
+                },
+                {
+                    "ToVertex": "Paris",
+                    "Military": 61,
+                    "Goods": 29,
+                    "Distance": 598
+                },
+                {
+                    "ToVertex": "Belgrado",
+                    "Military": 51,
+                    "Goods": 76,
+                    "Distance": 761
+                },
+                {
+                    "ToVertex": "Madrid",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 1701
+                },
+                {
+                    "ToVertex": "Lisboa",
+                    "Military": 100,
+                    "Goods": 69,
+                    "Distance": 138
+                },
+                {
+                    "ToVertex": "Skopje",
+                    "Military": 89,
+                    "Goods": 44,
+                    "Distance": 693
+                }
+            ]
+        },
+        {
+            "Vertex": "Skopje",
+            "Soldiers": 1029,
+            "Missiles": 5576,
+            "TechLevel": 7,
+            "Edges": [
+                {
+                    "ToVertex": "Madrid",
+                    "Military": 50,
+                    "Goods": 31,
+                    "Distance": 1359
+                },
+                {
+                    "ToVertex": "Lisboa",
+                    "Military": 24,
+                    "Goods": 60,
+                    "Distance": 1156
+                },
+                {
+                    "ToVertex": "Atenas",
+                    "Military": 77,
+                    "Goods": 23,
+                    "Distance": 1629
+                },
+                {
+                    "ToVertex": "Zagreb",
+                    "Military": 48,
+                    "Goods": 56,
+                    "Distance": 1092
+                },
+                {
+                    "ToVertex": "Varsovia",
+                    "Military": 70,
+                    "Goods": 37,
+                    "Distance": 622
+                },
+                {
+                    "ToVertex": "Ljubljana",
+                    "Military": 91,
+                    "Goods": 37,
+                    "Distance": 693
+                },
+                {
+                    "ToVertex": "Roma",
+                    "Military": 82,
+                    "Goods": 77,
+                    "Distance": 516
+                }
+            ]
+        },
+        {
+            "Vertex": "Tirana",
+            "Soldiers": 6546,
+            "Missiles": 2423,
+            "TechLevel": 2,
+            "Edges": [
+                {
+                    "ToVertex": "Berlin",
+                    "Military": 46,
+                    "Goods": 67,
+                    "Distance": 202
+                },
+                {
+                    "ToVertex": "Varsovia",
+                    "Military": 70,
+                    "Goods": 37,
+                    "Distance": 743
+                },
+                {
+                    "ToVertex": "Budapest",
+                    "Military": 27,
+                    "Goods": 67,
+                    "Distance": 871
+                },
+                {
+                    "ToVertex": "Bucarest",
+                    "Military": 85,
+                    "Goods": 42,
+                    "Distance": 1064
+                },
+                {
+                    "ToVertex": "Roma",
+                    "Military": 82,
+                    "Goods": 77,
+                    "Distance": 1453
+                },
+                {
+                    "ToVertex": "Atenas",
+                    "Military": 77,
+                    "Goods": 23,
+                    "Distance": 794
+                }
+            ]
+        }
+    ]
+}

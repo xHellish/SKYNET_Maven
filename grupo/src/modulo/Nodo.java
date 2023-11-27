@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class Nodo {
 	
-	Vector<Arista> aristasColindantes;
+	Vector<Arista> aristasColindantes= new Vector<Arista>();
 	
 	String nombre;
 	int soldados;
@@ -25,5 +25,12 @@ public class Nodo {
 		aristasColindantes.add(arista);
 	}
 	
+	//Getters & setters
+	public String getNombre() {
+		return nombre;
+	}
 	
+	public Vector<Arista> getAristas(){
+		return aristasColindantes;
+	}
 }
