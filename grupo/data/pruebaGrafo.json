@@ -1,0 +1,34 @@
+{
+  "ciudades": [
+    {"nombre": "Nueva York"},
+    {"nombre": "Boston"},
+    {"nombre": "Filadelfia"},
+    {"nombre": "Washington DC"},
+    {"nombre": "Chicago"},
+    {"nombre": "Los Ángeles"}
+  ],
+  "conexiones": [
+    {"id": "1", "ciudadOrigen": "Nueva York", "ciudadDestino": "Boston", "camino": "toBoston"},
+    {"id": "2", "ciudadOrigen": "Nueva York", "ciudadDestino": "Filadelfia", "camino": "toPhiladelphia"},
+    {"id": "3", "ciudadOrigen": "Boston", "ciudadDestino": "Filadelfia", "camino": "toPhiladelphia"},
+    {"id": "4", "ciudadOrigen": "Filadelfia", "ciudadDestino": "Washington DC", "camino": "toWashingtonDC"},
+    {"id": "5", "ciudadOrigen": "Washington DC", "ciudadDestino": "Chicago", "camino": "toChicago"},
+    {"id": "6", "ciudadOrigen": "Chicago", "ciudadDestino": "Los Ángeles", "camino": "toLosAngeles"},
+    {"id": "7", "ciudadOrigen": "Los Ángeles", "ciudadDestino": "Nueva York", "camino": "toNewYork"},
+    {"id": "8", "ciudadOrigen": "Boston", "ciudadDestino": "Nueva York", "camino": "toNewYork"},
+    {"id": "9", "ciudadOrigen": "Filadelfia", "ciudadDestino": "Nueva York", "camino": "toNewYork"},
+    {"id": "10", "ciudadOrigen": "Washington DC", "ciudadDestino": "Filadelfia", "camino": "toPhiladelphia"},
+    {"id": "11", "ciudadOrigen": "Chicago", "ciudadDestino": "Los Ángeles", "camino": "toLosAngeles"},
+    {"id": "12", "ciudadOrigen": "Los Ángeles", "ciudadDestino": "Chicago", "camino": "toChicago"}
+  ]
+}
+
+
+
+
+
+
+
+
+  
+  

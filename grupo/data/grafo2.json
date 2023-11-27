@@ -1,0 +1,94 @@
+{
+  "ciudades": [
+    {
+      "nombre": "Nueva York",
+      "conexiones": [
+        {"ciudad": "Boston", "camino": "toBoston"},
+        {"ciudad": "Filadelfia", "camino": "toPhiladelphia"},
+        {"ciudad": "Washington DC", "camino": "toWashingtonDC"}
+      ]
+    },
+    {
+      "nombre": "Boston",
+      "conexiones": [
+        {"ciudad": "Nueva York", "camino": "toNewYork"},
+        {"ciudad": "Filadelfia", "camino": "toPhiladelphia"},
+        {"ciudad": "Washington DC", "camino": "toWashingtonDC"},
+        {"ciudad": "Chicago", "camino": "toChicago"}
+      ]
+    },
+    {
+      "nombre": "Filadelfia",
+      "conexiones": [
+        {"ciudad": "Nueva York", "camino": "toNewYork"},
+        {"ciudad": "Boston", "camino": "toBoston"},
+        {"ciudad": "Washington DC", "camino": "toWashingtonDC"},
+        {"ciudad": "Chicago", "camino": "toChicago"}
+      ]
+    },
+    {
+      "nombre": "Washington DC",
+      "conexiones": [
+        {"ciudad": "Nueva York", "camino": "toNewYork"},
+        {"ciudad": "Boston", "camino": "toBoston"},
+        {"ciudad": "Filadelfia", "camino": "toPhiladelphia"},
+        {"ciudad": "Chicago", "camino": "toChicago"},
+        {"ciudad": "Atlanta", "camino": "toAtlanta"}
+      ]
+    },
+    {
+      "nombre": "Chicago",
+      "conexiones": [
+        {"ciudad": "Boston", "camino": "toBoston"},
+        {"ciudad": "Filadelfia", "camino": "toPhiladelphia"},
+        {"ciudad": "Washington DC", "camino": "toWashingtonDC"},
+        {"ciudad": "Atlanta", "camino": "toAtlanta"},
+        {"ciudad": "Denver", "camino": "toDenver"}
+      ]
+    },
+    {
+      "nombre": "Atlanta",
+      "conexiones": [
+        {"ciudad": "Washington DC", "camino": "toWashingtonDC"},
+        {"ciudad": "Chicago", "camino": "toChicago"},
+        {"ciudad": "Denver", "camino": "toDenver"},
+        {"ciudad": "Miami", "camino": "toMiami"}
+      ]
+    },
+    {
+      "nombre": "Denver",
+      "conexiones": [
+        {"ciudad": "Chicago", "camino": "toChicago"},
+        {"ciudad": "Atlanta", "camino": "toAtlanta"},
+        {"ciudad": "Los Ángeles", "camino": "toLosAngeles"}
+      ]
+    },
+    {
+      "nombre": "Miami",
+      "conexiones": [
+        {"ciudad": "Atlanta", "camino": "toAtlanta"},
+        {"ciudad": "Houston", "camino": "toHouston"}
+      ]
+    },
+    {
+      "nombre": "Los Ángeles",
+      "conexiones": [
+        {"ciudad": "Denver", "camino": "toDenver"},
+        {"ciudad": "San Francisco", "camino": "toSanFrancisco"}
+      ]
+    },
+    {
+      "nombre": "San Francisco",
+      "conexiones": [
+        {"ciudad": "Los Ángeles", "camino": "toLosAngeles"},
+        {"ciudad": "Seattle", "camino": "toSeattle"}
+      ]
+    },
+    {
+      "nombre": "Seattle",
+      "conexiones": [
+        {"ciudad": "San Francisco", "camino": "toSanFrancisco"}
+      ]
+    }
+  ]
+}
