@@ -7,14 +7,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import data.FileChooser;
 import data.JsonGrafoParser;
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseMultigraph;
-import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import grafoLogic.JungGraphViewer;
+import modulo.GrafoManager;
 
 
 public class WindowMainController {
-
+	
+	GrafoManager grafoManager;
+	
     private WindowMainView vista;
     private WindowMainModel modelo;
 
@@ -62,12 +62,21 @@ public class WindowMainController {
 
         if (pathGrafo != null && !pathGrafo.isEmpty()) {
             JsonGrafoParser parser = new JsonGrafoParser();
+            
             try {
                 JsonNode grafoNodo = parser.parseJsonFromFile(pathGrafo);
 
                 if (grafoNodo != null) {
                 	
-                    new JungGraphViewer(grafoNodo);
+                	//Grafo manager
+                	grafoManager = new GrafoManager(grafoNodo);
+	            	 
+					//Ventana grafo
+					JungGraphViewer ventanaGrafo = new JungGraphViewer(); //ventanaGrafo
+					ventanaGrafo.setGrafoNodo(grafoNodo);
+					ventanaGrafo.showGrafoJson();
+					
+					//ventanaGrafo.showGrafoVector(ciudades);
                     
                 } else {
                     System.out.println("Error: No se pudo parsear el archivo JSON correctamente.");

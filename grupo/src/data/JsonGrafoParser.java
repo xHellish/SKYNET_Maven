@@ -13,6 +13,7 @@ public class JsonGrafoParser {
     private String path;
 
     public JsonGrafoParser() {
+    	
     }
 
     public JsonNode parseJsonFromFile(String filePath) {

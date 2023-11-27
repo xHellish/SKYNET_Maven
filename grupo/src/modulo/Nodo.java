@@ -24,4 +24,6 @@ public class Nodo {
 	public void agregarArista(Arista arista) {
 		aristasColindantes.add(arista);
 	}
+	
+	
 }

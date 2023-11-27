@@ -2,12 +2,16 @@ package graphic;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import javax.swing.border.EmptyBorder;
-import grafoLogic.CanvasGrafo;
+
 import javax.swing.JButton;
+
+import java.awt.Canvas;
 import java.awt.Font;
 import java.awt.Panel;
 import java.awt.SystemColor;
+
 
 public class WindowMainView extends JFrame {
 
@@ -15,12 +19,12 @@ public class WindowMainView extends JFrame {
     private JPanel contentPane;
     Panel panelCanvas;
 
-    // Canvas
-    CanvasGrafo canvasGrafo;
-
     // Buttons
     JButton subirGrafoButton;
-
+    
+    //Canvas
+    Canvas canvasGrafo;
+    
     public WindowMainView() {
 
         // Resto del código de inicialización específico de WindowMainView
@@ -42,7 +46,7 @@ public class WindowMainView extends JFrame {
         subirGrafoButton.setBounds(10, 519, 152, 31);
         contentPane.add(subirGrafoButton);
 
-        canvasGrafo = new CanvasGrafo();
+        canvasGrafo = new Canvas();
         canvasGrafo.setBackground(SystemColor.activeCaption);
         canvasGrafo.setBounds(10, 10, 744, 483);
         panelCanvas.add(canvasGrafo);
@@ -52,7 +56,7 @@ public class WindowMainView extends JFrame {
         return subirGrafoButton;
     }
 
-    public CanvasGrafo getCanvasGrafo() {
+    public Canvas getCanvasGrafo() {
         return canvasGrafo;
     }
 

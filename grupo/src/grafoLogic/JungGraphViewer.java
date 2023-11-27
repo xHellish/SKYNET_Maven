@@ -1,29 +1,32 @@
 package grafoLogic;
 
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+import modulo.Nodo;
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
-import edu.uci.ics.jung.algorithms.layout.FRLayout;
-import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
-import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
-
-
 import javax.swing.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.awt.*;
+import java.util.Vector;
 
 public class JungGraphViewer {
-
-    public JungGraphViewer(JsonNode grafoNodo) {
-    	showGraph(convertirJsonAGrafo(grafoNodo));
+	
+	JsonNode grafoNodo;
+	
+    public JungGraphViewer() {
+    	
     }
-
+    
+    public void setGrafoNodo(JsonNode grafoNodo) {
+    	this.grafoNodo = grafoNodo;
+    	
+    }
+    
     private Graph<String, String> convertirJsonAGrafo(JsonNode grafoNodo) {
     	
     	UndirectedSparseGraph<String, String> grafoJung = new UndirectedSparseGraph<>();
@@ -59,12 +62,20 @@ public class JungGraphViewer {
 
         // Crear la ventana
         JFrame frame = new JFrame("JUNG Graph Viewer");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().add(vv);
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
     }
+
+	public void showGrafoJson() {
+		showGraph(convertirJsonAGrafo(grafoNodo));
+	}
+	
+	public void showGrafoVector(Vector<Nodo> grafoCitys) {
+		
+	}
 }
 
 
