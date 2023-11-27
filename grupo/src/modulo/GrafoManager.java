@@ -1,11 +1,18 @@
 package modulo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.Vector;
+import java.util.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
+
+import grafoLogic.JungGraphViewer;
 
 public class GrafoManager {
 	
@@ -53,7 +60,37 @@ public class GrafoManager {
 	public void setGrafoTemporal(Vector<Nodo> grafoNuevo) {
 		temporal = grafoNuevo;
 	}
+	
+	// Métodos Aux
+	public Vector<Nodo> resetTmp(){
+		Vector<Nodo> temporal2 = new Vector<Nodo>();
+		
+		for (Nodo nodoOriginal : grafoCiudades) {
+            Nodo nodoCopia = new Nodo(nodoOriginal.getNombre(), nodoOriginal.getSoldados(), nodoOriginal.getMisiles(), nodoOriginal.getNivelTecnologico());
 
+            for (Arista aristaOriginal : nodoOriginal.getAristas()) {
+                Arista aristaCopia = new Arista(aristaOriginal.getNombreInicio(), aristaOriginal.getNombreLlegada(), aristaOriginal.getMilitancia(), aristaOriginal.getRecursos(), aristaOriginal.getDistancia());
+                nodoCopia.agregarArista(aristaCopia);
+            }
+            temporal2.add(nodoCopia);
+        }
+		return temporal2;
+	}
+	
+	public Vector<Nodo> copiarVector(Vector<Nodo> original) {
+	    Vector<Nodo> copia = new Vector<>();
+
+	    for (Nodo nodoOriginal : original) {
+	        Nodo nodoCopia = new Nodo(nodoOriginal.getNombre(), nodoOriginal.getSoldados(), nodoOriginal.getMisiles(), nodoOriginal.getNivelTecnologico());
+
+	        for (Arista aristaOriginal : nodoOriginal.getAristas()) {
+	            Arista aristaCopia = new Arista(aristaOriginal.getNombreInicio(), aristaOriginal.getNombreLlegada(), aristaOriginal.getMilitancia(), aristaOriginal.getRecursos(), aristaOriginal.getDistancia());
+	            nodoCopia.agregarArista(aristaCopia);
+	        }
+	        copia.add(nodoCopia);
+	    }
+	    return copia;
+	}
 	
 	// ----------------- Cálculos ----------------- //
 	//Dadas dos ciudades
@@ -63,7 +100,8 @@ public class GrafoManager {
 
 	// -> Grafo disconexo.
 	public Vector<Nodo> hacerGrafoDisconexo(){
-		temporal = grafoCiudades;
+		temporal = resetTmp();
+		
 		Nodo PrimerNodo=temporal.get(0);
 		for(Arista Edge:PrimerNodo.aristasColindantes){
 			for(int i=0; i<temporal.size();i++){
@@ -78,120 +116,157 @@ public class GrafoManager {
 	}
 	
 	// -> Expansión mínima.
-	
 	public void grafoExpansionMinima() {
-	    // Mapeo de nombres de ciudades a identificadores numéricos
-	    Map<String, Integer> idCiudades = new HashMap<>();
-	    int idCounter = 0;
+	    temporal = resetTmp();
+	    
+	    Set<String> nodosVisitados = new HashSet<>();
+	    Vector<Nodo> nodosExpansionMinima = new Vector<>();
 
-	    for (Nodo nodo : grafoCiudades) {
-	        idCiudades.put(nodo.getNombre(), idCounter++);
-	    }
+	    for (Nodo nodoActual : grafoCiudades) {
+	        if (!nodosVisitados.contains(nodoActual.getNombre())) {
+	            nodosVisitados.add(nodoActual.getNombre());
+	            nodosExpansionMinima.add(nodoActual);
 
-	    // Inicializa una cola de prioridad para ordenar las aristas
-	    PriorityQueue<Arista> colaPrioridad = new PriorityQueue<>((a1, a2) -> Integer.compare(a1.distancia, a2.distancia));
-
-	    // Agrega todas las aristas al conjunto de candidatos
-	    for (Nodo nodo : grafoCiudades) {
-	        colaPrioridad.addAll(nodo.getAristas());
-	    }
-
-	    // Conjunto de conjuntos disjuntos para verificar ciclos
-	    UnionFind conjuntosDisjuntos = new UnionFind(grafoCiudades.size());
-
-	    // Árbol de expansión mínima
-	    Vector<Arista> arbolExpansionMinima = new Vector<>();
-
-	    // Proceso de Kruskal
-	    while (!colaPrioridad.isEmpty() && arbolExpansionMinima.size() < grafoCiudades.size() - 1) {
-	        Arista aristaActual = colaPrioridad.poll();
-
-	        // Obtiene los identificadores numéricos de los nodos
-	        int idInicio = idCiudades.get(aristaActual.getNombreInicio());
-	        int idLlegada = idCiudades.get(aristaActual.getNombreLlegada());
-
-	        // Verifica si agregar la arista actual forma un ciclo
-	        if (conjuntosDisjuntos.union(idInicio, idLlegada)) {
-	            // Agrega la arista al árbol de expansión mínima
-	            arbolExpansionMinima.add(aristaActual);
+	            for (Arista arista : nodoActual.getAristas()) {
+	                if (!nodosVisitados.contains(arista.getNombreLlegada())) {
+	                    nodosVisitados.add(arista.getNombreLlegada());
+	                    // Agrega un nuevo Nodo con el nombre de llegada de la arista
+	                    nodosExpansionMinima.add(new Nodo(arista.getNombreLlegada(), 0, 0, 0));
+	                    // Si quieres agregar la arista al árbol de expansión mínima también, puedes hacerlo aquí.
+	                }
+	            }
 	        }
 	    }
-
-	    // Imprime o realiza cualquier acción con el árbol de expansión mínima
-	    System.out.println("Árbol de expansión mínima:");
-	    for (Arista arista : arbolExpansionMinima) {
-	        System.out.println("De " + arista.getNombreInicio() + " a " + arista.getNombreLlegada() + ", Distancia: " + arista.distancia);
-	    }
+	    temporal = nodosExpansionMinima;
+	    
+	    
 	}
 	
-	private static class UnionFind {
-        int[] padre;
-
-        public UnionFind(int n) {
-            padre = new int[n];
-            for (int i = 0; i < n; i++) {
-                padre[i] = i;
-            }
-        }
-
-        public int encontrar(int x) {
-            if (padre[x] == x) {
-                return x;
-            }
-            return padre[x] = encontrar(padre[x]);
-        }
-
-        public boolean union(int x, int y) {
-            int raizX = encontrar(x);
-            int raizY = encontrar(y);
-
-            if (raizX != raizY) {
-                padre[raizX] = raizY;
-                return true;
-            }
-            return false;
-        }
-    }
+	Vector<Nodo> copiaOriginal;
 	
-	// -> Entre dos Nodos
+	public void eliminarTrasiegoBienes() {
+	    copiaOriginal = copiarVector(grafoCiudades);
+
+	    for (Nodo nodo : copiaOriginal) {
+	    	
+	    	Vector<Arista> aristasIteracion = nodo.getAristas();
+	    	
+	    	for (Arista aristaNodo : aristasIteracion) {
+	    		if (existeArista(aristaNodo, temporal)) {
+	    			nodo.eliminarArista(aristaNodo);
+                }
+	    	} 
+	    }
+
+	    JungGraphViewer visorGrafo = new JungGraphViewer();
+	    visorGrafo.showGrafoVector(copiaOriginal);
+	}
 	
-	public Arista EntreDoNodos(String Origen, String Destino){
-		temporal = grafoCiudades;								
+	public boolean existeArista(Arista arista, Vector<Nodo> grafo) {
+		for (Nodo nodo : grafo) {
+			for (Arista aristaNodo : nodo.getAristas()) {
+				if (arista.equals(aristaNodo)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public void grafoDirigido(){
+		temporal=resetTmp();
+		DirectedGraph.crearGrafoDirigido(temporal);
+	}
+	// -> Entre dos Nodos 
+	
+	public Vector<Nodo> entreDosNodos(String Origen, String Destino){
+		temporal = resetTmp();
+		Vector<Nodo> VectorCaminoNodos=new Vector<Nodo>();
 		Nodo CiudadInicio=null;
 		Arista camino=null;
 		for(Nodo ciudad:temporal){
-			if(ciudad.nombre==Origen){
+			if(ciudad.nombre.equals(Origen)){
 				CiudadInicio=ciudad;
 				break;
 			}
 		}
 		Nodo CiudadFinal=null;
 		for(Nodo ciudad:temporal){
-			if(ciudad.nombre==Destino){
+			if(ciudad.nombre.equals(Destino)){
 				CiudadFinal=ciudad;
 				break;
 			}
 		}
 		int cont=0;
 		for(Arista arista:CiudadInicio.aristasColindantes){
-			if(arista.nombreLlegada==Destino){
+			if(arista.nombreLlegada.equals(Destino)){
 				camino=arista;
 				CiudadInicio.aristasColindantes.remove(cont);
 				break;
 			}
 			cont++;
 		}
-		return camino;
+		
+		Vector<String> RutaMasCorta = sacarRutaMasCorta(CiudadInicio,CiudadFinal,new Vector<String>());
+		
+		
+		
+		
+		for(Nodo ciudad:grafoCiudades){
+			if(RutaMasCorta.contains(ciudad.nombre)){VectorCaminoNodos.add(ciudad);}
+		}
+
+		return VectorCaminoNodos;
 		
 	}
-	/*
-	 public Vector<String> sacarRutaMasCorta(Nodo CiudadInicio, Nodo CiudadFinal, Vector<String> Ruta){
-		if(CiudadInicio.nombre==CiudadFinal.nombre){return Ruta;}
+	
+	public Vector<String> sacarRutaMasCorta(Nodo CiudadInicio, Nodo CiudadFinal, Vector<String> Ruta){
+		if(CiudadInicio.nombre.equals(CiudadFinal.nombre)){return Ruta;}
 
-		for(Arista ciudad:CiudadInicio){
-			
+		Ruta.add(CiudadInicio.getNombre());
+		Arista RutaMasCorta=null;
+		
+		
+		
+		for(Arista camino:CiudadInicio.getAristas()){
+			if(RutaMasCorta == null){
+				RutaMasCorta=camino;
+				
+				System.out.println("Lleguée 1");
+			}else if(Ruta.size()==1){
+				
+				System.out.println("Lleguée 2");
+				
+				if(camino.distancia<RutaMasCorta.distancia){RutaMasCorta=camino;}
+				
+				System.out.println("Lleguée 3");
+			}else{
+				
+				System.out.println("Lleguée 4");
+				
+				for(int i=0;i<Ruta.size();i++){
+					if(!Ruta.contains(camino.nombreLlegada)){
+						if(camino.distancia<RutaMasCorta.distancia){RutaMasCorta=camino;}
+					}
+				}
+			}
 		}
 		
+		
+
+		for(Nodo ciudad:this.grafoCiudades){
+			if(ciudad.nombre.equals(RutaMasCorta.nombreLlegada)){
+				CiudadInicio=ciudad;
+				break;
+			}
 		}
-	  */
+		
+		System.out.println("Ciclo");
+		
+		return sacarRutaMasCorta(CiudadInicio, CiudadFinal,Ruta);
+	}
+	
+	// -> Camino al mas poderoso
+	
+	
 }

@@ -54,7 +54,7 @@ public class WindowMainModel {
 	// Ver el grafo actual modificado.
 	public void grafoActualModificado() {
 		JungGraphViewer visorGrafo = new JungGraphViewer();
-		Vector<Nodo> grafoCitys = grafoManager.getGrafoCiudades();
+		Vector<Nodo> grafoCitys = grafoManager.getGrafoTemporal();
 		visorGrafo.showGrafoVector(grafoCitys);
 	}
 	
@@ -64,12 +64,19 @@ public class WindowMainModel {
 		visorGrafo.showGrafoVector(grafoCitys);
 	}
 	
-	public void grafoExpansionMinima() {
+	public void hacerGrafoExpansionMinima() {
+		System.out.println("Expansión minima...");
 		grafoManager.grafoExpansionMinima();
-		graficarGrafoPorVector(grafoManager.getGrafoCiudades());
+		
 	}
 	
-	public void graficarGrafoDisconexo() {
-		graficarGrafoPorVector(grafoManager.hacerGrafoDisconexo());
+	public void hacerGrafoDisconexo() {
+		System.out.println("Hacer Grafo Disconexo...");
+		grafoManager.hacerGrafoDisconexo();
+	}
+	
+	public void eliminarArbolExpansionMinima() {
+		System.out.println("Eliminando trasiego de bienes...");
+		grafoManager.eliminarTrasiegoBienes();
 	}
 }

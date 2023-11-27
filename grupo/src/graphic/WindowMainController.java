@@ -14,7 +14,12 @@ public class WindowMainController {
         // Listeners buttons.
         vista.getSubirGrafoButton().addActionListener(e -> subirGrafoHandler());
         vista.getVerActualButton().addActionListener(e -> verActualGrafoHandler());
-        vista.getVerGrafoDisconexoButton().addActionListener(e -> verGrafoDisconexoHandler());
+        vista.getHacerGrafoDisconexoButton().addActionListener(e -> hacerGrafoDisconexoHandler());
+        vista.getSaveButton().addActionListener(e -> guardarGrafoModificadoHandler());
+        vista.getHacerArbolExpansionMinimaButton().addActionListener(e -> hacerGrafoExpansionMinima());
+        vista.getEliminarArbolExpansionButton().addActionListener(e -> eliminarAlbolExpansionMinimaHandler());
+        vista.getEntreDosCiudadesButton().addActionListener(e -> entreDosCiudadesHandler());
+        vista.getVerGrafoDirigidoButton().addActionListener(e -> verGrafoDirigidoHandler());
     }
 
     // Handlers
@@ -26,12 +31,32 @@ public class WindowMainController {
     	modelo.grafoActualModificado();
     }
     
-    private void verGrafoExpansionMinima() {
-    	modelo.grafoExpansionMinima();
+    private void hacerGrafoExpansionMinima() {
+    	modelo.hacerGrafoExpansionMinima();
     }
     
-    private void verGrafoDisconexoHandler() {
-    	modelo.graficarGrafoDisconexo();
+    private void hacerGrafoDisconexoHandler() {
+    	modelo.hacerGrafoDisconexo();
+    }
+    
+    private void eliminarAlbolExpansionMinimaHandler() {
+    	modelo.eliminarArbolExpansionMinima();
+    }
+    
+    private void guardarGrafoModificadoHandler() {
     	
     }
+    
+    private void verGrafoDirigidoHandler() {
+    	modelo.grafoManager.grafoDirigido();
+    }
+    
+    private void entreDosCiudadesHandler() {
+    	EntreDosCiudadesView ventanaEntreDosCiudades = new EntreDosCiudadesView();
+    	EntreDosCiudadesController entreDosCiudadesController = new EntreDosCiudadesController(ventanaEntreDosCiudades, modelo.grafoManager);
+    	ventanaEntreDosCiudades.agregarNombresComboBoxes(modelo.grafoManager.getGrafoCiudades());
+    	ventanaEntreDosCiudades.setVisible(true);
+    }
+    
+    
 }

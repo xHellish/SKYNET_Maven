@@ -17,6 +17,8 @@ public class Arista {
 		this.nombreInicio = nombreInicio;
 	}
 	
+	// Getters & setters
+	
 	public String getNombreInicio() {
 		return nombreLlegada;
 	}
@@ -24,6 +26,20 @@ public class Arista {
 	public String getNombreLlegada() {
 		return nombreLlegada;
 	}
+
+	public int getMilitancia() {
+		return militancia;
+	}
+
+	public int getRecursos() {
+		return recursos;
+	}
+
+	public int getDistancia() {
+		return distancia;
+	}
+	
+	
 	
 	
 }
