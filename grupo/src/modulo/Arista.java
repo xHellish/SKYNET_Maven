@@ -20,10 +20,11 @@ public class Arista {
 	// Getters & setters
 	
 	public String getNombreInicio() {
-		return nombreLlegada;
-	}
+        return nombreInicio; 
+    }
 	
 	public String getNombreLlegada() {
+		
 		return nombreLlegada;
 	}
 
@@ -39,7 +40,7 @@ public class Arista {
 		return distancia;
 	}
 	
-	
-	
-	
+	public String getDestino() {
+		return nombreLlegada;
+	}
 }

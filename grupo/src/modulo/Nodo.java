@@ -57,4 +57,8 @@ public class Nodo {
 	public Vector<Arista> getAristas(){
 		return aristasColindantes;
 	}
+	
+	public void setAristas(Vector<Arista> aristasNuevas) {
+		this.aristasColindantes = aristasNuevas;
+	}
 }

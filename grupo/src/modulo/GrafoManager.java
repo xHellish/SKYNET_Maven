@@ -91,14 +91,40 @@ public class GrafoManager {
 	    }
 	    return copia;
 	}
-	
-	// ----------------- Cálculos ----------------- //
-	//Dadas dos ciudades
-	//seleccionadas, determine el
-	//camino más corto por distancia
-	//entre ambas. 
+	public Vector<Nodo> eliminarCamino(Vector<Vector<Nodo>> paths, int indice){
+		temporal=resetTmp();
+		Vector<Nodo>camino=paths.elementAt(indice);
+		eliminarAristasDelCamino(camino);
+		return temporal;		
+	}
+	public void eliminarAristasDelCamino(Vector<Nodo> camino) {
+		for (int i = 0; i < camino.size() - 1; i++) {
+			Nodo nodoActual = camino.get(i);
+			Nodo nodoSiguiente = camino.get(i + 1);
 
-	// -> Grafo disconexo.
+			Arista aristaAEliminar = nodoActual.getAristas().stream()
+					.filter(arista -> arista.getNombreLlegada().equals(nodoSiguiente.getNombre()))
+					.findFirst()
+					.orElse(null);
+
+			if (aristaAEliminar != null) {
+				nodoActual.eliminarArista(aristaAEliminar);
+			}
+		}
+
+		for (int i = 0; i < temporal.size(); i++) {
+			Nodo nodoTemporal = temporal.get(i);
+			for (Nodo nodoCamino : camino) {
+				if (nodoTemporal.getNombre().equals(nodoCamino.getNombre())) {
+					nodoTemporal.setAristas(nodoCamino.getAristas());
+					break;
+				}
+			}
+		}
+	}
+	// ----------------- Cálculos ----------------- //
+	
+	// -> 1. Grafo disconexo.
 	public Vector<Nodo> hacerGrafoDisconexo(){
 		temporal = resetTmp();
 		
@@ -115,7 +141,7 @@ public class GrafoManager {
 		return temporal;
 	}
 	
-	// -> Expansión mínima.
+	// -> 2. Expansión mínima.
 	public void grafoExpansionMinima() {
 	    temporal = resetTmp();
 	    
@@ -145,21 +171,14 @@ public class GrafoManager {
 	Vector<Nodo> copiaOriginal;
 	
 	public void eliminarTrasiegoBienes() {
-	    copiaOriginal = copiarVector(grafoCiudades);
+	    copiaOriginal = copiarVector(temporal);
+	    
+	    temporal = resetTmp();
 
-	    for (Nodo nodo : copiaOriginal) {
-	    	
-	    	Vector<Arista> aristasIteracion = nodo.getAristas();
-	    	
-	    	for (Arista aristaNodo : aristasIteracion) {
-	    		if (existeArista(aristaNodo, temporal)) {
-	    			nodo.eliminarArista(aristaNodo);
-                }
-	    	} 
-	    }
+	    eliminarAristasDelCamino(copiaOriginal);
 
 	    JungGraphViewer visorGrafo = new JungGraphViewer();
-	    visorGrafo.showGrafoVector(copiaOriginal);
+	    visorGrafo.showShortestPathGraph(temporal);
 	}
 	
 	public boolean existeArista(Arista arista, Vector<Nodo> grafo) {
@@ -173,100 +192,259 @@ public class GrafoManager {
 		return false;
 	}
 	
+	// -> 5. Red de un solo recorrido
+	
+	public void redUnSoloRecorrido() {
+		grafoExpansionMinima();
+		
+		Vector<Nodo> grafoCopia1 = copiarVector(grafoCiudades);
+		Vector<Nodo> grafoCopia2 = copiarVector(temporal);
+		
+		if (grafoCopia1.equals(grafoCopia2)) {
+			System.out.println("Se puede reventar TODO (es posible recorrer sin repetir)");
+			
+		} else {
+			System.out.println("Se repiten aristas");
+		}
+	}
+	
+	// -> 3. Grafo dirigido
 	public void grafoDirigido(){
 		temporal=resetTmp();
 		DirectedGraph.crearGrafoDirigido(temporal);
 	}
-	// -> Entre dos Nodos 
 	
-	public Vector<Nodo> entreDosNodos(String Origen, String Destino){
-		temporal = resetTmp();
-		Vector<Nodo> VectorCaminoNodos=new Vector<Nodo>();
-		Nodo CiudadInicio=null;
-		Arista camino=null;
-		for(Nodo ciudad:temporal){
-			if(ciudad.nombre.equals(Origen)){
-				CiudadInicio=ciudad;
-				break;
+	
+	// -> 4.Camino al mas poderoso
+	public Nodo masPoderoso(){
+		temporal=resetTmp();
+		Nodo poderoso=null;
+		for(Nodo nodo: temporal){
+			int suma=nodo.getMisiles() + nodo.getSoldados();
+			if(poderoso==null){
+				poderoso=nodo;
+			}else if(suma>(poderoso.getMisiles() + poderoso.getSoldados())){
+				poderoso=nodo;
 			}
 		}
-		Nodo CiudadFinal=null;
-		for(Nodo ciudad:temporal){
-			if(ciudad.nombre.equals(Destino)){
-				CiudadFinal=ciudad;
-				break;
-			}
-		}
-		int cont=0;
-		for(Arista arista:CiudadInicio.aristasColindantes){
-			if(arista.nombreLlegada.equals(Destino)){
-				camino=arista;
-				CiudadInicio.aristasColindantes.remove(cont);
-				break;
-			}
-			cont++;
-		}
-		
-		Vector<String> RutaMasCorta = sacarRutaMasCorta(CiudadInicio,CiudadFinal,new Vector<String>());
-		
-		
-		
-		
-		for(Nodo ciudad:grafoCiudades){
-			if(RutaMasCorta.contains(ciudad.nombre)){VectorCaminoNodos.add(ciudad);}
-		}
-
-		return VectorCaminoNodos;
-		
+		return poderoso;
 	}
-	
-	public Vector<String> sacarRutaMasCorta(Nodo CiudadInicio, Nodo CiudadFinal, Vector<String> Ruta){
-		if(CiudadInicio.nombre.equals(CiudadFinal.nombre)){return Ruta;}
 
-		Ruta.add(CiudadInicio.getNombre());
-		Arista RutaMasCorta=null;
+	public Vector<Vector<Nodo>> caminosAMasPoderoso(){
+		temporal=resetTmp();
+		Nodo poderoso=masPoderoso();
+		Vector<Vector<Nodo>> caminos = new Vector<>();
+		for(Nodo nodo:temporal){
+			if(nodo!=poderoso){
+				Vector<Nodo>actual=caminoMasCorto(nodo.getNombre(),poderoso.getNombre());
+				caminos.add(new Vector<>(actual));
+			}
+		}
+		return caminos;
+	}
+	public void eliminarCaminosAPoderoso(){
+		Vector<Vector<Nodo>> caminos=caminosAMasPoderoso();
+		for(Vector<Nodo>camino:caminos){
+			eliminarAristasDelCamino(camino);
+		}
+	}
+
+	//-> 6. Red de un solo recorrido
+	public void nodoMasVisitado(){
+		grafoExpansionMinima();
+		int aristasTotales=0;
+		Vector<Nodo> masVisitados=new Vector<Nodo>();
+
+		for(Nodo ciudad:temporal){
+			if(ciudad.aristasColindantes.size()>=aristasTotales){
+				aristasTotales=ciudad.aristasColindantes.size();
+				masVisitados.add(ciudad);
+			}
+		}
 		
-		
-		
-		for(Arista camino:CiudadInicio.getAristas()){
-			if(RutaMasCorta == null){
-				RutaMasCorta=camino;
-				
-				System.out.println("Lleguée 1");
-			}else if(Ruta.size()==1){
-				
-				System.out.println("Lleguée 2");
-				
-				if(camino.distancia<RutaMasCorta.distancia){RutaMasCorta=camino;}
-				
-				System.out.println("Lleguée 3");
-			}else{
-				
-				System.out.println("Lleguée 4");
-				
-				for(int i=0;i<Ruta.size();i++){
-					if(!Ruta.contains(camino.nombreLlegada)){
-						if(camino.distancia<RutaMasCorta.distancia){RutaMasCorta=camino;}
-					}
+		for(Nodo nodo: masVisitados){
+			for(Nodo ciudad:temporal){
+				if(ciudad.equals(nodo)){
+					temporal.remove(ciudad);
+					break;
 				}
 			}
 		}
+	}
+	
+	// -> 7. Camino mas corto
+	public int distanciaCamino(Vector<Nodo> camino){
+		int cont=0;
+		for(int i=0; i<camino.size() - 1; i++){ 
+			Nodo nodoActual = camino.get(i);
+			
+				Nodo nodoSiguiente = camino.get(i + 1);
+				Arista aristaS = nodoActual.getAristas().stream()
+						.filter(arista -> arista.getNombreLlegada().equals(nodoSiguiente.getNombre()))
+						.findFirst()
+						.orElse(null);
+				if (aristaS != null) {
+					cont+=aristaS.getDistancia();
+				}
+			
+		}
+		return cont;		
+	}
+	
+	public Vector<Nodo> caminoMasCorto(String inicio, String fin ){
+		temporal=resetTmp();
+		Vector<Nodo> caminoMasCorto=null;
+		Vector<Vector<Nodo>> rutas = findAllPaths(inicio,fin);
 		
-		
-
-		for(Nodo ciudad:this.grafoCiudades){
-			if(ciudad.nombre.equals(RutaMasCorta.nombreLlegada)){
-				CiudadInicio=ciudad;
-				break;
+		for(Vector<Nodo> ruta: rutas){
+			if(caminoMasCorto==null){caminoMasCorto=ruta;}
+			else if(distanciaCamino(caminoMasCorto)>distanciaCamino(ruta)){
+				caminoMasCorto=ruta;
 			}
 		}
 		
-		System.out.println("Ciclo");
-		
-		return sacarRutaMasCorta(CiudadInicio, CiudadFinal,Ruta);
+		return caminoMasCorto;
 	}
 	
-	// -> Camino al mas poderoso
+	
+	// -> 8. Camino mas poderoso
+	public int fuerzaMilitar(Vector<Nodo> camino){
+		int cont=0;
+		for(int i=0; i<camino.size()-1; i++){ 
+			Nodo nodoActual = camino.get(i);						
+			Nodo nodoSiguiente = camino.get(i + 1);						
+			Arista aristaS = nodoActual.getAristas().stream()
+					.filter(arista -> arista.getNombreLlegada().equals(nodoSiguiente.getNombre()))
+					.findFirst()
+					.orElse(null);
+			if (aristaS != null) {
+				cont+=aristaS.getMilitancia();
+			}
+		}
+		return cont;		
+	}
+	public Vector<Nodo> caminoMasPoderoso(String origen, String destino){
+		temporal=resetTmp();
+		Vector<Nodo>masFuerte=null;
+		Vector<Vector<Nodo>> caminos=findAllPaths(origen,destino);
+		for(Vector<Nodo> vector:caminos){
+			if(masFuerte==null){
+				masFuerte=vector;
+			}else if(fuerzaMilitar(masFuerte)<fuerzaMilitar(vector)){
+				masFuerte=vector;
+			}
+		}
+		return masFuerte;
+	} 
+	
+	// -> 9. Todos los caminos
+	public Vector<Vector<Nodo>> findAllPaths(String inicio, String fin) {
+		Vector<Vector<Nodo>> todosLosCaminos = new Vector<>();
+		Set<String> visitados = new HashSet<>();
+		Nodo nodoInicio = buscarNodo(inicio);
+
+		if (nodoInicio != null) {
+			Vector<Nodo> caminoActual = new Vector<>();
+			dfs(nodoInicio, visitados, caminoActual, todosLosCaminos, fin);
+		}
+
+		return todosLosCaminos;
+	}
+
+    private void dfs(Nodo actual, Set<String> visitados, Vector<Nodo> caminoActual, Vector<Vector<Nodo>> todosLosCaminos, String destino) {
+		if (visitados.contains(actual.getNombre())) {
+			return; 
+		}
+
+		visitados.add(actual.getNombre()); 
+		caminoActual.add(actual);
+
+		if (actual.getNombre().equals(destino)) {
+			todosLosCaminos.add(new Vector<>(caminoActual)); 
+		} else {
+			for (Arista arista : actual.getAristas()) {
+				Nodo vecino = buscarNodo(arista.getNombreLlegada());
+				if (vecino != null) {
+					dfs(vecino, visitados, caminoActual, todosLosCaminos, destino);
+				}
+			}
+		}
+
+		visitados.remove(actual.getNombre()); 
+		caminoActual.remove(caminoActual.size() - 1); 
+	}
+    private Nodo buscarNodo(String nombre) {
+		temporal=resetTmp();
+        for (Nodo nodo : temporal) {
+            if (nodo.getNombre().equals(nombre)) {
+                return nodo;
+            }
+        }
+        return null;
+    }
+	public int valorPonderado(Vector<Nodo> camino){
+		int cont=0;
+		for(int i=0; i<camino.size()-1; i++){ 
+			Nodo nodoActual = camino.get(i);
+			Nodo nodoSiguiente = camino.get(i + 1);
+			Arista aristaS = nodoActual.getAristas().stream()
+					.filter(arista -> arista.getNombreLlegada().equals(nodoSiguiente.getNombre()))
+					.findFirst()
+					.orElse(null);
+			if (aristaS != null) {
+				cont+=aristaS.getMilitancia();
+				cont+=aristaS.getRecursos();
+				cont+=aristaS.getDistancia();
+			}
+		}
+		return cont;
+		
+	}
 	
 	
+	// -> 10. Recorrido más eficiente para destrucción
+	public Nodo masTecnologico(){
+		temporal=resetTmp();
+		Nodo poderoso=null;
+		for(Nodo nodo: temporal){
+			int suma=nodo.getNivelTecnologico();
+			if(poderoso==null){
+				poderoso=nodo;
+			}else if(suma> poderoso.getNivelTecnologico()){
+				poderoso=nodo;
+			}
+		}
+		
+		return poderoso;
+	}
+	public Nodo menosTecnologico(){
+		temporal=resetTmp();
+		Nodo poderoso=null;
+		for(Nodo nodo: temporal){
+			int suma=nodo.getNivelTecnologico();
+			if(poderoso==null){
+				poderoso=nodo;
+			}else if(suma < poderoso.getNivelTecnologico()){
+				poderoso=nodo;
+			}
+		}
+		return poderoso;
+	}
+	
+	
+	public Vector<Nodo> recorridoMasEficienteDestruccion(){
+		temporal=resetTmp();
+		Nodo origen=masTecnologico();
+		Nodo destino=menosTecnologico();
+		Vector<Nodo>masFuerte=null;
+		Vector<Vector<Nodo>> caminos=findAllPaths(origen.getNombre(),destino.getNombre());
+		for(Vector<Nodo> vector:caminos){
+			if(masFuerte==null){
+				masFuerte=vector;
+			}else if(fuerzaMilitar(masFuerte)<fuerzaMilitar(vector)){
+				masFuerte=vector;
+			}
+		}
+		return masFuerte;
+	} 
 }

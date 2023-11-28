@@ -44,11 +44,9 @@ public class JungGraphViewer {
                 String ciudadDestino = conexion.get("ToVertex").asText();
                 //String idArista = nombreCiudad + "_&_" + ciudadDestino;
                 
-                
                 grafoJung.addEdge(String.valueOf(numeroID++), nombreCiudad, ciudadDestino);
             }
         }
-
         return grafoJung;
     }
 
@@ -58,7 +56,7 @@ public class JungGraphViewer {
         VisualizationViewer<String, String> vv = new VisualizationViewer<>(new CircleLayout<>(graph));
 		vv.setPreferredSize(new Dimension(690, 630));
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-		//vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+		vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
 		vv.setGraphMouse(new DefaultModalGraphMouse<>());
 
         // Crear la ventana
@@ -72,22 +70,49 @@ public class JungGraphViewer {
 
 	public void showGrafoJson() {
 		showGraph(convertirJsonAGrafo(grafoNodoActual), "GRAFO ORIGINAL");
+		
 	}
 	
+	
 	public void showGrafoVector(Vector<Nodo> grafoCitys) {
-		
-		int numeroID = 0;
-		UndirectedSparseGraph<String, String> grafoJung = new UndirectedSparseGraph<>();
-		
-		for (Nodo ciudad : grafoCitys) {
-			grafoJung.addVertex(ciudad.getNombre());
-			
-			for (Arista arista : ciudad.getAristas()) {
-				grafoJung.addEdge(String.valueOf(numeroID++), ciudad.getNombre(), arista.getNombreInicio());
-			}
-		}
-		
-		showGraph(grafoJung, "GRAFO MODIFICADO SKYNET");
+	    
+	    int numeroID = 0;
+	    
+	    UndirectedSparseGraph<String, String> grafoJung = new UndirectedSparseGraph<>();
+	    
+	    for (Nodo ciudad : grafoCitys) {
+	        grafoJung.addVertex(ciudad.getNombre());
+	        
+	        for (Arista arista : ciudad.getAristas()) {
+	            // Asegurarse de que no se añade la misma arista dos veces
+	            if (!grafoJung.containsEdge(String.valueOf(numeroID))) {
+	                grafoJung.addEdge(String.valueOf(numeroID++), arista.getNombreInicio(), arista.getNombreLlegada());
+	            }
+	        }
+	    }
+	    
+	    showGraph(grafoJung, "GRAFO MODIFICADO SKYNET");
+	}
+	
+	public void showShortestPathGraph(Vector<Nodo> caminoMasCorto) {
+	    UndirectedSparseGraph<String, String> grafoJung = new UndirectedSparseGraph<>();
+
+	    // Asignar un ID único a cada arista
+	    int numeroID = 0;
+
+	    // Añadir solo los nodos y aristas que forman parte del camino más corto
+	    for (int i = 0; i < caminoMasCorto.size(); i++) {
+	        Nodo nodo = caminoMasCorto.get(i);
+	        grafoJung.addVertex(nodo.getNombre());
+
+	        if (i < caminoMasCorto.size() - 1) {
+	            Nodo siguienteNodo = caminoMasCorto.get(i + 1);
+	            grafoJung.addEdge(String.valueOf(numeroID++), nodo.getNombre(), siguienteNodo.getNombre());
+	        }
+	    }
+
+	    // Visualizar el grafo con JUNG
+	    showGraph(grafoJung, "Camino Más Corto desde " + caminoMasCorto.firstElement().getNombre() + " a " + caminoMasCorto.lastElement().getNombre());
 	}
 }
 

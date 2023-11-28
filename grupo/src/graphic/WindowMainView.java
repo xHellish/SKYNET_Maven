@@ -28,6 +28,9 @@ public class WindowMainView extends JFrame {
     private JButton hacerArbolExpansionMinimaButton;
     private JButton eliminarArbolExpansionButton;
     private JButton verGrafoDirigidoButton;
+    private JButton redDeUnSoloRecorridoButton;
+    private JButton nodoMasVisitadoButton;
+    private JButton caminosHaciaMasPoderosoButton;
 
     public WindowMainView() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,6 +85,7 @@ public class WindowMainView extends JFrame {
         saveButton.setIcon(scaledIcon);
         contentPane.add(saveButton);
         
+        // Entre dos ciudades
         entreDosCiudadesButton = new JButton("Entre dos ciudades...\r\n");
         entreDosCiudadesButton.setForeground(Color.BLACK);
         entreDosCiudadesButton.setFont(new Font("Tarzan", Font.BOLD, 15));
@@ -90,6 +94,7 @@ public class WindowMainView extends JFrame {
         entreDosCiudadesButton.setBounds(278, 11, 258, 36);
         contentPane.add(entreDosCiudadesButton);
         
+        // Arbol de expansion
         hacerArbolExpansionMinimaButton = new JButton("Hacer Árbol Expansión");
         hacerArbolExpansionMinimaButton.setForeground(Color.BLACK);
         hacerArbolExpansionMinimaButton.setFont(new Font("Tarzan", Font.BOLD, 15));
@@ -106,6 +111,7 @@ public class WindowMainView extends JFrame {
         eliminarArbolExpansionButton.setBounds(10, 95, 258, 26);
         contentPane.add(eliminarArbolExpansionButton);
         
+        // Ver grafo dirigido
         verGrafoDirigidoButton = new JButton("Ver Grafo Dirigido");
         verGrafoDirigidoButton.setForeground(Color.BLACK);
         verGrafoDirigidoButton.setFont(new Font("Tarzan", Font.BOLD, 15));
@@ -113,6 +119,31 @@ public class WindowMainView extends JFrame {
         verGrafoDirigidoButton.setBackground(new Color(230, 57, 70));
         verGrafoDirigidoButton.setBounds(278, 58, 258, 36);
         contentPane.add(verGrafoDirigidoButton);
+        
+        // Red de un solo recorrido
+        redDeUnSoloRecorridoButton = new JButton("Red de un solo recorrido");
+        redDeUnSoloRecorridoButton.setForeground(Color.BLACK);
+        redDeUnSoloRecorridoButton.setFont(new Font("Tarzan", Font.BOLD, 15));
+        redDeUnSoloRecorridoButton.setFocusPainted(false);
+        redDeUnSoloRecorridoButton.setBackground(new Color(230, 57, 70));
+        redDeUnSoloRecorridoButton.setBounds(10, 132, 258, 36);
+        contentPane.add(redDeUnSoloRecorridoButton);
+        
+        nodoMasVisitadoButton = new JButton("Nodo más visitado");
+        nodoMasVisitadoButton.setForeground(Color.BLACK);
+        nodoMasVisitadoButton.setFont(new Font("Tarzan", Font.BOLD, 15));
+        nodoMasVisitadoButton.setFocusPainted(false);
+        nodoMasVisitadoButton.setBackground(new Color(230, 57, 70));
+        nodoMasVisitadoButton.setBounds(278, 105, 258, 36);
+        contentPane.add(nodoMasVisitadoButton);
+        
+        caminosHaciaMasPoderosoButton = new JButton("Caminos Al Más Poderoso");
+        caminosHaciaMasPoderosoButton.setForeground(Color.BLACK);
+        caminosHaciaMasPoderosoButton.setFont(new Font("Tarzan", Font.BOLD, 15));
+        caminosHaciaMasPoderosoButton.setFocusPainted(false);
+        caminosHaciaMasPoderosoButton.setBackground(new Color(230, 57, 70));
+        caminosHaciaMasPoderosoButton.setBounds(278, 152, 258, 26);
+        contentPane.add(caminosHaciaMasPoderosoButton);
         
 
     }
@@ -153,10 +184,20 @@ public class WindowMainView extends JFrame {
 		return verGrafoDirigidoButton;
 	}
 	
+	public JButton getRedDeUnSoloRecorridoButton() {
+		return redDeUnSoloRecorridoButton;
+	}
+	
+	public JButton getCaminosHaciaMasPoderosoButton() {
+		return caminosHaciaMasPoderosoButton;
+	}
+	
+	public JButton getNodoMasVisitadoButton() {
+		return nodoMasVisitadoButton;
+	}
+	
 	// Panel
-
-    
-
+	
 	public JPanel getPanelMain() {
         return contentPane;
     }

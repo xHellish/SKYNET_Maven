@@ -12,6 +12,8 @@ import java.util.Vector;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EntreDosCiudadesView extends JFrame {
 
@@ -19,11 +21,14 @@ public class EntreDosCiudadesView extends JFrame {
 	JComboBox comboBoxCiudad1;
 	JComboBox comboBoxCiudad2;
 	private JButton rutaMasCortaButton;
+	private JButton todosLosCaminosButton;
+	private JButton caminoMasPoderosoButton;
 	
 	public EntreDosCiudadesView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 493, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 248, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -54,8 +59,22 @@ public class EntreDosCiudadesView extends JFrame {
 		contentPane.add(comboBoxCiudad2);
 		
 		rutaMasCortaButton = new JButton("Ruta Más Corta");
-		rutaMasCortaButton.setBounds(10, 101, 147, 23);
+		rutaMasCortaButton.setBackground(new Color(205, 92, 92));
+		rutaMasCortaButton.setFont(new Font("Tarzan", Font.PLAIN, 13));
+		rutaMasCortaButton.setBounds(10, 79, 218, 35);
 		contentPane.add(rutaMasCortaButton);
+		
+		todosLosCaminosButton = new JButton("Ver todos los caminos");
+		todosLosCaminosButton.setBackground(new Color(205, 92, 92));
+		todosLosCaminosButton.setFont(new Font("Tarzan", Font.PLAIN, 13));
+		todosLosCaminosButton.setBounds(10, 171, 218, 35);
+		contentPane.add(todosLosCaminosButton);
+		
+		caminoMasPoderosoButton = new JButton("Camino Más Poderoso");
+		caminoMasPoderosoButton.setFont(new Font("Tarzan", Font.PLAIN, 13));
+		caminoMasPoderosoButton.setBackground(new Color(205, 92, 92));
+		caminoMasPoderosoButton.setBounds(10, 125, 218, 35);
+		contentPane.add(caminoMasPoderosoButton);
 	}
 	
 	public void agregarNombresComboBoxes(Vector<Nodo> grafoCiudades) {
@@ -67,6 +86,14 @@ public class EntreDosCiudadesView extends JFrame {
 	
 	public JButton getRutaMasCortaButton() {
 		return rutaMasCortaButton;
+	}
+	
+	public JButton getTodosLosCaminosButton() {
+		return todosLosCaminosButton;
+	}
+	
+	public JButton getCaminoMasPoderosoButton() {
+		return caminoMasPoderosoButton;
 	}
 	
 	public String getCiudadInicio() {

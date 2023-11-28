@@ -12,6 +12,8 @@ import modulo.Nodo;
 
 public class WindowMainModel {
 	
+	//Ruta actual
+	String pathGrafo;
 	// Manager de los cálculos.
 	GrafoManager grafoManager;
 	
@@ -22,7 +24,7 @@ public class WindowMainModel {
 	// Setter del grafo original y su primer visualización.
 	public void getGrafoRuta() {
 		FileChooser chooser = new FileChooser();
-        String pathGrafo = chooser.getPathGrafo();
+        pathGrafo = chooser.getPathGrafo();
 
         if (pathGrafo != null && !pathGrafo.isEmpty()) {
             JsonGrafoParser parser = new JsonGrafoParser();
@@ -78,5 +80,22 @@ public class WindowMainModel {
 	public void eliminarArbolExpansionMinima() {
 		System.out.println("Eliminando trasiego de bienes...");
 		grafoManager.eliminarTrasiegoBienes();
+	}
+	
+	public void caminosMasPoderosos() {
+		Vector<Vector<Nodo>> grafos = grafoManager.caminosAMasPoderoso();
+		JungGraphViewer visorGrafo = new JungGraphViewer();
+		
+		for (Vector<Nodo> grafo : grafos) {
+			visorGrafo.showShortestPathGraph(grafo);
+			
+		}
+	}
+	
+	public void nodosMasVisitados() {
+		grafoManager.nodoMasVisitado();
+		Vector<Nodo> grafo = grafoManager.getGrafoTemporal();
+		JungGraphViewer visorGrafo = new JungGraphViewer();
+		visorGrafo.showShortestPathGraph(grafo);
 	}
 }
