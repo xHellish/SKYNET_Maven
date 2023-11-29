@@ -11,7 +11,7 @@ import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
 import javax.swing.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
+import modulo.GrafoManager;
 import java.awt.*;
 import java.util.Random;
 import java.util.Vector;
@@ -20,6 +20,7 @@ public class JungGraphViewer {
     
 	//GrafoActual tipo JsonObject
 	JsonNode grafoNodoActual;
+	int ponderadoActual=0;
 	
     public JungGraphViewer() {
     	
@@ -38,19 +39,35 @@ public class JungGraphViewer {
         // Agregar vértices y aristas al grafo
         for (JsonNode ciudad : grafoNodo.get("Ciudades")) {
             String nombreCiudad = ciudad.get("Vertex").asText();
-            grafoJung.addVertex(nombreCiudad);
-
+			//String ciudadID=nombreCiudad+","+String.valueOf(ciudad.get("Soldiers"))+","+String.valueOf(ciudad.get("Missiles"))+","+String.valueOf(ciudad.get("TechLevel"));
+            
+			grafoJung.addVertex(nombreCiudad);
+			
+			System.out.println(".......................................: ");
+			System.out.println("Ciudad: " + nombreCiudad);
+			System.out.println("");
+			System.out.println("Soldados: " + String.valueOf(ciudad.get("Soldiers")));
+			System.out.println("Misiles: " + String.valueOf(ciudad.get("Missiles")));
+			System.out.println("Tech Level: " + String.valueOf(ciudad.get("TechLevel")));
+			System.out.println("");
+			//System.out.println("---------------------------------------: ");
+			
             for (JsonNode conexion : ciudad.get("Edges")) {
                 String ciudadDestino = conexion.get("ToVertex").asText();
-                //String idArista = nombreCiudad + "_&_" + ciudadDestino;
+                String idArista = nombreCiudad +"&"+ ciudadDestino + " " + conexion.get("Military").asText() + "," + conexion.get("Goods") + "," + conexion.get("Distance");
+                //String ciudadDestinoID=ciudadDestino+","+String.valueOf(ciudad.get("Soldiers"))+","+String.valueOf(ciudad.get("Missiles"))+","+String.valueOf(ciudad.get("TechLevel"));
+                //grafoJung.addEdge(String.valueOf(numeroID++), nombreCiudad, ciudadDestino);
                 
-                grafoJung.addEdge(String.valueOf(numeroID++), nombreCiudad, ciudadDestino);
+                grafoJung.addEdge(idArista, nombreCiudad, ciudadDestino);
             }
         }
         return grafoJung;
     }
 
-
+    public void setPonderado(int ponderado) {
+    	ponderadoActual = ponderado;
+    }
+    
     public void showGraph(Graph<String, String> graph, String nombreVentana) {
         
         VisualizationViewer<String, String> vv = new VisualizationViewer<>(new CircleLayout<>(graph));
@@ -73,10 +90,9 @@ public class JungGraphViewer {
 		
 	}
 	
-	
 	public void showGrafoVector(Vector<Nodo> grafoCitys) {
 	    
-	    int numeroID = 0;
+	    String numeroID = "";
 	    
 	    UndirectedSparseGraph<String, String> grafoJung = new UndirectedSparseGraph<>();
 	    
@@ -84,9 +100,10 @@ public class JungGraphViewer {
 	        grafoJung.addVertex(ciudad.getNombre());
 	        
 	        for (Arista arista : ciudad.getAristas()) {
+				numeroID=String.valueOf(arista.getMilitancia())+","+String.valueOf(arista.getRecursos())+","+String.valueOf(arista.getDistancia());
 	            // Asegurarse de que no se añade la misma arista dos veces
 	            if (!grafoJung.containsEdge(String.valueOf(numeroID))) {
-	                grafoJung.addEdge(String.valueOf(numeroID++), arista.getNombreInicio(), arista.getNombreLlegada());
+	                grafoJung.addEdge(numeroID, arista.getNombreInicio(), arista.getNombreLlegada());
 	            }
 	        }
 	    }
@@ -112,7 +129,7 @@ public class JungGraphViewer {
 	    }
 
 	    // Visualizar el grafo con JUNG
-	    showGraph(grafoJung, "Camino Más Corto desde " + caminoMasCorto.firstElement().getNombre() + " a " + caminoMasCorto.lastElement().getNombre());
+	    showGraph(grafoJung, "Camino Más Corto desde " + caminoMasCorto.firstElement().getNombre() + " a " + caminoMasCorto.lastElement().getNombre()+"Valor ponderado: "+String.valueOf(ponderadoActual));
 	}
 }
 

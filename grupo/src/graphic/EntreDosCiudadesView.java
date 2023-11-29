@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class EntreDosCiudadesView extends JFrame {
 
@@ -23,6 +24,9 @@ public class EntreDosCiudadesView extends JFrame {
 	private JButton rutaMasCortaButton;
 	private JButton todosLosCaminosButton;
 	private JButton caminoMasPoderosoButton;
+	private JButton btnBorrarCamino;
+	
+	private JTextField textFieldIndex;
 	
 	public EntreDosCiudadesView() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -75,6 +79,17 @@ public class EntreDosCiudadesView extends JFrame {
 		caminoMasPoderosoButton.setBackground(new Color(205, 92, 92));
 		caminoMasPoderosoButton.setBounds(10, 125, 218, 35);
 		contentPane.add(caminoMasPoderosoButton);
+		
+		textFieldIndex = new JTextField();
+		textFieldIndex.setBounds(10, 217, 86, 20);
+		contentPane.add(textFieldIndex);
+		textFieldIndex.setColumns(10);
+		
+		btnBorrarCamino = new JButton("Borrar Camino");
+		btnBorrarCamino.setFont(new Font("Tarzan", Font.PLAIN, 8));
+		btnBorrarCamino.setBackground(new Color(205, 92, 92));
+		btnBorrarCamino.setBounds(106, 217, 122, 20);
+		contentPane.add(btnBorrarCamino);
 	}
 	
 	public void agregarNombresComboBoxes(Vector<Nodo> grafoCiudades) {
@@ -102,5 +117,13 @@ public class EntreDosCiudadesView extends JFrame {
 	
 	public String getCiudadLlegada() {
 		return comboBoxCiudad2.getSelectedItem().toString();
+	}
+	
+	public int getIndexBorrar() {
+		return Integer.parseInt(textFieldIndex.getText());
+	}
+	
+	public JButton getBtnBorrarCamino() {
+		return btnBorrarCamino;
 	}
 }

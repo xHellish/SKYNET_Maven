@@ -57,13 +57,13 @@ public class WindowMainModel {
 	public void grafoActualModificado() {
 		JungGraphViewer visorGrafo = new JungGraphViewer();
 		Vector<Nodo> grafoCitys = grafoManager.getGrafoTemporal();
-		visorGrafo.showGrafoVector(grafoCitys);
+		visorGrafo.showShortestPathGraph(grafoCitys);
 	}
 	
 	// Ver grafo directamente por vector.
 	public void graficarGrafoPorVector(Vector<Nodo> grafoCitys) {
 		JungGraphViewer visorGrafo = new JungGraphViewer();
-		visorGrafo.showGrafoVector(grafoCitys);
+		visorGrafo.showShortestPathGraph(grafoCitys);
 	}
 	
 	public void hacerGrafoExpansionMinima() {
@@ -97,5 +97,11 @@ public class WindowMainModel {
 		Vector<Nodo> grafo = grafoManager.getGrafoTemporal();
 		JungGraphViewer visorGrafo = new JungGraphViewer();
 		visorGrafo.showShortestPathGraph(grafo);
+	}
+	
+	public void verGrafoDisconexo() {
+		Vector<Nodo> grafo = grafoManager.getGrafoTemporal();
+		JungGraphViewer visorGrafo = new JungGraphViewer();
+		visorGrafo.showGrafoVector(grafo);
 	}
 }

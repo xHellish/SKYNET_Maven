@@ -2,6 +2,8 @@ package graphic;
 
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import data.VectorToJson;
 import modulo.Nodo;
 
@@ -29,6 +31,7 @@ public class WindowMainController {
         vista.getRedDeUnSoloRecorridoButton().addActionListener(e -> redDeUnSoloRecorrido());
         vista.getNodoMasVisitadoButton().addActionListener(e -> nodoMasVisitadoHandler());
         vista.getCaminosHaciaMasPoderosoButton().addActionListener(e -> caminosHaciaMasPoderosoHandler());
+        vista.getMostrarGrafoDisconexoButton().addActionListener(e -> verGrafoDisconexoHandler());
     }
 
     // Handlers
@@ -36,6 +39,12 @@ public class WindowMainController {
     	modelo.getGrafoRuta();
     	
     } 
+    
+    public void verGrafoDisconexoHandler() {
+    	modelo.verGrafoDisconexo();
+    	//modelo.grafoManager.eliminarCaminosAPoderoso();
+    	
+    }
     
     private void verActualGrafoHandler() {
     	modelo.grafoActualModificado();
@@ -54,34 +63,62 @@ public class WindowMainController {
     }
     
     private void guardarGrafoModificadoHandler() {
+        try{
     	Vector<Nodo> grafo = modelo.grafoManager.getGrafoTemporal();
     	String rutaActual = modelo.pathGrafo;
     	
-    	VectorToJson vectorToJson = new VectorToJson(grafo, rutaActual);
+    	int response = JOptionPane.showConfirmDialog(null, "¿Desea continuar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+    	
+    	if (response == JOptionPane.YES_OPTION) {
+    		VectorToJson vectorToJson = new VectorToJson(grafo, rutaActual);
+            System.out.println("SE HA MODIFICADO EL GRAFO ORIGINAL");
+        }
+        }catch(Exception e){
+            System.out.println("No se puede hacer el arbol de expansion minima");
+        }
+    	
     }
     
     private void verGrafoDirigidoHandler() {
-    	modelo.grafoManager.grafoDirigido();
+        try{
+    	    modelo.grafoManager.grafoDirigido();
+        }catch (Exception e){
+            System.out.println("No se puede hacer dirigido");
+        }
     }
     
     public void redDeUnSoloRecorrido() {
-    	modelo.grafoManager.redUnSoloRecorrido();
+        try{
+    	    modelo.grafoManager.redUnSoloRecorrido();
+        }catch (Exception e){
+            System.out.println("No hay un solo recorrido");
+        }
     }
     
     private void entreDosCiudadesHandler() {
-    	EntreDosCiudadesView ventanaEntreDosCiudades = new EntreDosCiudadesView();
-    	EntreDosCiudadesController entreDosCiudadesController = new EntreDosCiudadesController(ventanaEntreDosCiudades, modelo.grafoManager);
-    	
-    	ventanaEntreDosCiudades.agregarNombresComboBoxes(modelo.grafoManager.getGrafoCiudades());
-    	
-    	ventanaEntreDosCiudades.setVisible(true);
+        try{
+            EntreDosCiudadesView ventanaEntreDosCiudades = new EntreDosCiudadesView();
+            EntreDosCiudadesController entreDosCiudadesController = new EntreDosCiudadesController(ventanaEntreDosCiudades, modelo.grafoManager);
+            
+            ventanaEntreDosCiudades.agregarNombresComboBoxes(modelo.grafoManager.getGrafoCiudades());
+            
+            ventanaEntreDosCiudades.setVisible(true);
+        }catch (Exception e){
+            System.out.println("No se puede mostrar el camino.");
+        }
     }
     
     private void nodoMasVisitadoHandler() {
-    	modelo.nodosMasVisitados();
+        try{
+    	    modelo.nodosMasVisitados();
+        }catch (Exception e){
+            System.out.println("No se encuentra el nodo mas visitado.");
+        }
     }
     
     private void caminosHaciaMasPoderosoHandler() {
+        
     	modelo.caminosMasPoderosos();
+        
     }
 }

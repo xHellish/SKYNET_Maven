@@ -37,6 +37,10 @@ public class Nodo {
 	    }
 	}
 	
+	public void eliminarAristas() {
+		aristasColindantes = null;
+	}
+	
 	//Getters & setters
 	public String getNombre() {
 		return nombre;

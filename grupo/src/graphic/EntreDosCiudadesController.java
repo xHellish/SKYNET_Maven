@@ -25,6 +25,7 @@ public class EntreDosCiudadesController {
 		vista.getRutaMasCortaButton().addActionListener(e -> rutaMasCortaHandler());
 		vista.getTodosLosCaminosButton().addActionListener(e -> verTodosLosCaminosHandler());
 		vista.getCaminoMasPoderosoButton().addActionListener(e -> verCaminoMasPoderosoHandler());
+		vista.getBtnBorrarCamino().addActionListener(e -> getBtnBorrarCaminoHandler());
 	}
 	
 	// Métodos
@@ -36,6 +37,14 @@ public class EntreDosCiudadesController {
 		
 	}
 	
+	private void getBtnBorrarCaminoHandler() {
+		int idexABorrar = vista.getIndexBorrar();
+		Vector<Vector<Nodo>> listaVectores= grafoManager.findAllPaths(vista.getCiudadInicio().toString(), vista.getCiudadLlegada().toString());
+		
+		
+		
+	}
+	
 	private void verTodosLosCaminosHandler() {
 		Vector<Vector<Nodo>> listaVectores= grafoManager.findAllPaths(vista.getCiudadInicio().toString(), vista.getCiudadLlegada().toString());
 		
@@ -44,7 +53,7 @@ public class EntreDosCiudadesController {
 		for (Vector<Nodo> grafo : listaVectores) {
 			
 			int ponderadoGrafo = grafoManager.valorPonderado(grafo);
-			
+			visorGrfos.setPonderado(ponderadoGrafo);
 			visorGrfos.showShortestPathGraph(grafo);
 		}
 	}
@@ -52,5 +61,7 @@ public class EntreDosCiudadesController {
 	private void verCaminoMasPoderosoHandler() {
 		Vector<Nodo> caminoMasPoderoso = grafoManager.caminoMasPoderoso(vista.getCiudadInicio().toString(), vista.getCiudadLlegada().toString());
 		visorGrfos.showShortestPathGraph(caminoMasPoderoso);
+		
+		
 	}
 }

@@ -91,37 +91,83 @@ public class GrafoManager {
 	    }
 	    return copia;
 	}
+	
 	public Vector<Nodo> eliminarCamino(Vector<Vector<Nodo>> paths, int indice){
 		temporal=resetTmp();
 		Vector<Nodo>camino=paths.elementAt(indice);
 		eliminarAristasDelCamino(camino);
 		return temporal;		
 	}
-	public void eliminarAristasDelCamino(Vector<Nodo> camino) {
-		for (int i = 0; i < camino.size() - 1; i++) {
-			Nodo nodoActual = camino.get(i);
-			Nodo nodoSiguiente = camino.get(i + 1);
-
-			Arista aristaAEliminar = nodoActual.getAristas().stream()
-					.filter(arista -> arista.getNombreLlegada().equals(nodoSiguiente.getNombre()))
-					.findFirst()
-					.orElse(null);
-
-			if (aristaAEliminar != null) {
-				nodoActual.eliminarArista(aristaAEliminar);
-			}
+	
+	
+	public Vector<Nodo> eliminarAristasDelCamino(Vector<Nodo> camino) {
+		
+		for (Nodo nodo : camino) {
+			nodo.eliminarAristas();
+			
 		}
-
-		for (int i = 0; i < temporal.size(); i++) {
-			Nodo nodoTemporal = temporal.get(i);
-			for (Nodo nodoCamino : camino) {
-				if (nodoTemporal.getNombre().equals(nodoCamino.getNombre())) {
-					nodoTemporal.setAristas(nodoCamino.getAristas());
-					break;
-				}
-			}
-		}
+		
+		return camino;
+		/*
+	    // Clonar 'temporal' para trabajar con una copia y no modificar el original
+	    Vector<Nodo> grafoActualizado = clonarVectorNodos(temporal);
+	
+	    // Iterar sobre el camino y eliminar las aristas específicas
+	    for (int i = 0; i < camino.size() - 1; i++) {
+	        Nodo nodoActual = encontrarNodoPorNombre(grafoActualizado, camino.get(i).getNombre());
+	        Nodo nodoSiguiente = encontrarNodoPorNombre(grafoActualizado, camino.get(i + 1).getNombre());
+	
+	        if (nodoActual != null && nodoSiguiente != null) {
+	            Arista aristaAEliminar = nodoActual.getAristas().stream()
+	                .filter(arista -> arista.getNombreLlegada().equals(nodoSiguiente.getNombre()))
+	                .findFirst()
+	                .orElse(null);
+	
+	            if (aristaAEliminar != null) {
+	                nodoActual.eliminarArista(aristaAEliminar);
+	            }
+	        }
+	    }
+	    
+	    return grafoActualizado;
+	    */
 	}
+
+	private Vector<Nodo> clonarVectorNodos(Vector<Nodo> original) {
+	    Vector<Nodo> clon = new Vector<>();
+	    for (Nodo nodo : original) {
+	        Nodo copiaNodo = new Nodo(
+	            nodo.getNombre(),
+	            nodo.getSoldados(),
+	            nodo.getMisiles(),
+	            nodo.getNivelTecnologico()
+	        );
+	        for (Arista arista : nodo.getAristas()) {
+	            copiaNodo.agregarArista(new Arista(
+	                arista.getNombreInicio(),
+	                arista.getNombreLlegada(),
+	                arista.getMilitancia(),
+	                arista.getRecursos(),
+	                arista.getDistancia()
+	            ));
+	        }
+	        clon.add(copiaNodo);
+	    }
+	    return clon;
+	}
+
+	private Nodo encontrarNodoPorNombre(Vector<Nodo> vector, String nombre) {
+	    for (Nodo nodo : vector) {
+	        if (nodo.getNombre().equals(nombre)) {
+	            return nodo;
+	        }
+	    }
+	    return null;
+	}
+	
+	
+	// O manejar de otra manera si el nodo no se encuentra
+	
 	// ----------------- Cálculos ----------------- //
 	
 	// -> 1. Grafo disconexo.
@@ -171,14 +217,13 @@ public class GrafoManager {
 	Vector<Nodo> copiaOriginal;
 	
 	public void eliminarTrasiegoBienes() {
-	    copiaOriginal = copiarVector(temporal);
+	    //copiaOriginal = copiarVector(temporal);
+	    Vector<Nodo>copiaOriginal=new Vector<>();
+	    grafoExpansionMinima();
+		//temporal=resetTmp();
+	    copiaOriginal=eliminarAristasDelCamino(temporal);
+		temporal=copiaOriginal;
 	    
-	    temporal = resetTmp();
-
-	    eliminarAristasDelCamino(copiaOriginal);
-
-	    JungGraphViewer visorGrafo = new JungGraphViewer();
-	    visorGrafo.showShortestPathGraph(temporal);
 	}
 	
 	public boolean existeArista(Arista arista, Vector<Nodo> grafo) {
@@ -197,10 +242,8 @@ public class GrafoManager {
 	public void redUnSoloRecorrido() {
 		grafoExpansionMinima();
 		
-		Vector<Nodo> grafoCopia1 = copiarVector(grafoCiudades);
-		Vector<Nodo> grafoCopia2 = copiarVector(temporal);
 		
-		if (grafoCopia1.equals(grafoCopia2)) {
+		if (true) {
 			System.out.println("Se puede reventar TODO (es posible recorrer sin repetir)");
 			
 		} else {
@@ -235,13 +278,18 @@ public class GrafoManager {
 		Nodo poderoso=masPoderoso();
 		Vector<Vector<Nodo>> caminos = new Vector<>();
 		for(Nodo nodo:temporal){
-			if(nodo!=poderoso){
-				Vector<Nodo>actual=caminoMasCorto(nodo.getNombre(),poderoso.getNombre());
-				caminos.add(new Vector<>(actual));
-			}
+			try{
+				if(nodo!=poderoso){
+					Vector<Nodo>actual=caminoMasCorto(nodo.getNombre(),poderoso.getNombre());
+					caminos.add(new Vector<>(actual));
+				}
+			}catch (Exception e){
+            	System.out.println("No hay camino.");
+        	}
 		}
 		return caminos;
 	}
+	
 	public void eliminarCaminosAPoderoso(){
 		Vector<Vector<Nodo>> caminos=caminosAMasPoderoso();
 		for(Vector<Nodo>camino:caminos){
@@ -291,7 +339,7 @@ public class GrafoManager {
 		return cont;		
 	}
 	
-	public Vector<Nodo> caminoMasCorto(String inicio, String fin ){
+	public Vector<Nodo> caminoMasCorto(String inicio, String fin){
 		temporal=resetTmp();
 		Vector<Nodo> caminoMasCorto=null;
 		Vector<Vector<Nodo>> rutas = findAllPaths(inicio,fin);
@@ -305,7 +353,7 @@ public class GrafoManager {
 		
 		return caminoMasCorto;
 	}
-	
+
 	
 	// -> 8. Camino mas poderoso
 	public int fuerzaMilitar(Vector<Nodo> camino){

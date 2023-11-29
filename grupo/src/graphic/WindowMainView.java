@@ -31,10 +31,11 @@ public class WindowMainView extends JFrame {
     private JButton redDeUnSoloRecorridoButton;
     private JButton nodoMasVisitadoButton;
     private JButton caminosHaciaMasPoderosoButton;
-
+    private JButton mostrarGrafoDisconexoButton;
+    
     public WindowMainView() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 662, 278);
+        setBounds(100, 100, 662, 320);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
         setContentPane(contentPane);
@@ -43,7 +44,7 @@ public class WindowMainView extends JFrame {
 
         // Botón Subir Grafo
         subirGrafoButton = new JButton("Subir Grafo");
-        subirGrafoButton.setBounds(10, 192, 258, 36);
+        subirGrafoButton.setBounds(10, 234, 258, 36);
         subirGrafoButton.setFont(new Font("Tarzan", Font.BOLD, 15));
         subirGrafoButton.setBackground(new Color(230, 57, 70));
         subirGrafoButton.setForeground(Color.BLACK);
@@ -52,7 +53,7 @@ public class WindowMainView extends JFrame {
 
         // Botón Ver Grafo Modificado
         verActualButton = new JButton("Ver Grafo Modificado");
-        verActualButton.setBounds(278, 192, 258, 36);
+        verActualButton.setBounds(278, 234, 258, 36);
         verActualButton.setFont(new Font("Tarzan", Font.BOLD, 15));
         verActualButton.setBackground(new Color(230, 57, 70));
         verActualButton.setForeground(Color.BLACK);
@@ -74,10 +75,11 @@ public class WindowMainView extends JFrame {
         saveButton.setFont(new Font("Tarzan", Font.BOLD, 15));
         saveButton.setFocusPainted(false);
         saveButton.setBackground(new Color(230, 57, 70));
-        saveButton.setBounds(546, 169, 91, 59);
+        saveButton.setBounds(545, 211, 91, 59);
         
         saveButton.setOpaque(false);
         saveButton.setContentAreaFilled(false);
+        
         
         // Carga la imagen
         ImageIcon saveIcon = new ImageIcon("C:\\Users\\Hellish\\Desktop\\skynetMaven\\grupo\\data\\saveIcon.png");
@@ -100,7 +102,7 @@ public class WindowMainView extends JFrame {
         hacerArbolExpansionMinimaButton.setFont(new Font("Tarzan", Font.BOLD, 15));
         hacerArbolExpansionMinimaButton.setFocusPainted(false);
         hacerArbolExpansionMinimaButton.setBackground(new Color(230, 57, 70));
-        hacerArbolExpansionMinimaButton.setBounds(10, 58, 258, 36);
+        hacerArbolExpansionMinimaButton.setBounds(10, 105, 258, 36);
         contentPane.add(hacerArbolExpansionMinimaButton);
         
         eliminarArbolExpansionButton = new JButton("Eliminar Trasiego de Bienes");
@@ -108,7 +110,7 @@ public class WindowMainView extends JFrame {
         eliminarArbolExpansionButton.setFont(new Font("Tarzan", Font.BOLD, 12));
         eliminarArbolExpansionButton.setFocusPainted(false);
         eliminarArbolExpansionButton.setBackground(new Color(230, 57, 70));
-        eliminarArbolExpansionButton.setBounds(10, 95, 258, 26);
+        eliminarArbolExpansionButton.setBounds(10, 139, 258, 26);
         contentPane.add(eliminarArbolExpansionButton);
         
         // Ver grafo dirigido
@@ -126,7 +128,7 @@ public class WindowMainView extends JFrame {
         redDeUnSoloRecorridoButton.setFont(new Font("Tarzan", Font.BOLD, 15));
         redDeUnSoloRecorridoButton.setFocusPainted(false);
         redDeUnSoloRecorridoButton.setBackground(new Color(230, 57, 70));
-        redDeUnSoloRecorridoButton.setBounds(10, 132, 258, 36);
+        redDeUnSoloRecorridoButton.setBounds(10, 187, 258, 36);
         contentPane.add(redDeUnSoloRecorridoButton);
         
         nodoMasVisitadoButton = new JButton("Nodo más visitado");
@@ -142,8 +144,16 @@ public class WindowMainView extends JFrame {
         caminosHaciaMasPoderosoButton.setFont(new Font("Tarzan", Font.BOLD, 15));
         caminosHaciaMasPoderosoButton.setFocusPainted(false);
         caminosHaciaMasPoderosoButton.setBackground(new Color(230, 57, 70));
-        caminosHaciaMasPoderosoButton.setBounds(278, 152, 258, 26);
+        caminosHaciaMasPoderosoButton.setBounds(278, 152, 258, 36);
         contentPane.add(caminosHaciaMasPoderosoButton);
+        
+        mostrarGrafoDisconexoButton = new JButton("Ver Grafo Disconexo");
+        mostrarGrafoDisconexoButton.setForeground(Color.BLACK);
+        mostrarGrafoDisconexoButton.setFont(new Font("Tarzan", Font.BOLD, 12));
+        mostrarGrafoDisconexoButton.setFocusPainted(false);
+        mostrarGrafoDisconexoButton.setBackground(new Color(230, 57, 70));
+        mostrarGrafoDisconexoButton.setBounds(10, 46, 258, 26);
+        contentPane.add(mostrarGrafoDisconexoButton);
         
 
     }
@@ -194,6 +204,10 @@ public class WindowMainView extends JFrame {
 	
 	public JButton getNodoMasVisitadoButton() {
 		return nodoMasVisitadoButton;
+	}
+	
+	public JButton getMostrarGrafoDisconexoButton() {
+		return mostrarGrafoDisconexoButton;
 	}
 	
 	// Panel
